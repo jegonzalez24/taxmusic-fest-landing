@@ -15,11 +15,21 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Variantes específicas del festival
+        festival: 
+          "bg-festival-hero text-white font-bold tracking-wide transform transition-all duration-300 hover:scale-105 hover:shadow-festival-glow border-0",
+        "festival-outline": 
+          "border-2 border-festival-pink text-festival-pink bg-transparent font-bold tracking-wide transition-all duration-300 hover:bg-festival-pink hover:text-white hover:scale-105",
+        "festival-secondary": 
+          "bg-festival-cream text-festival-dark font-semibold border border-festival-dark/20 transition-all duration-300 hover:bg-festival-dark hover:text-festival-cream hover:scale-105",
+        cta: 
+          "bg-festival-accent text-white font-bold text-lg tracking-wide shadow-festival-glow transform transition-all duration-300 hover:scale-110 hover:shadow-festival animate-festival-pulse",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
+        xl: "h-14 rounded-lg px-12 text-lg",
         icon: "h-10 w-10",
       },
     },

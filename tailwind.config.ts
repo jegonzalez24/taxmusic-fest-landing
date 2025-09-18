@@ -47,16 +47,27 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+        // Colores específicos del festival
+        festival: {
+          green: "hsl(var(--festival-green))",
+          cream: "hsl(var(--festival-cream))",
+          pink: "hsl(var(--festival-pink))",
+          dark: "hsl(var(--festival-dark))",
         },
+      },
+      fontFamily: {
+        'festival': ['Inter', 'system-ui', 'sans-serif'],
+        'festival-bold': ['Inter', 'system-ui', 'sans-serif'],
+      },
+      backgroundImage: {
+        'festival-hero': 'var(--gradient-hero)',
+        'festival-accent': 'var(--gradient-accent)',
+        'festival-section': 'var(--gradient-section)',
+      },
+      boxShadow: {
+        'festival': 'var(--shadow-festival)',
+        'festival-glow': 'var(--shadow-glow)',
+        'festival-card': 'var(--shadow-card)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -84,6 +95,9 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "festival-bounce": "festival-bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+        "festival-fade-up": "festival-fade-up 0.8s ease-out",
+        "festival-pulse": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },

@@ -1,12 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Hero } from "@/components/festival/Hero";
+import { About } from "@/components/festival/About";
+import { Zones } from "@/components/festival/Zones";
+import { Timeline } from "@/components/festival/Timeline";
+import { Activities } from "@/components/festival/Activities";
+import { LineUp } from "@/components/festival/LineUp";
+import { FoodTrucks } from "@/components/festival/FoodTrucks";
+import { Registration } from "@/components/festival/Registration";
+import { FAQ } from "@/components/festival/FAQ";
+import { Footer } from "@/components/festival/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <Hero />
+      <About />
+      <Zones />
+      <Timeline />
+      <Activities />
+      <LineUp />
+      <FoodTrucks />
+      <Registration />
+      <FAQ />
+      <Footer />
     </div>
   );
 };
