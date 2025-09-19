@@ -3,64 +3,63 @@
 @tailwind utilities;
 
 /* TAX MUSIC FEST Design System 
-Festival corporativo vibrante con colores EY y energía celebratoria
+Diseño moderno con fondo oscuro y acentos neón vibrantes
 */
 
 @layer base {
   :root {
-    /* Colores principales del evento */
-    --background: 220 100% 5%; /* Azul muy oscuro #000A1A */
-    --foreground: 60 100% 85%; /* Amarillo neón claro para texto */
+    /* Colores base */
+    --background: 216 17% 6%; /* Gris muy oscuro #0A0B0F */
+    --foreground: 0 0% 100%; /* Blanco puro */
 
-    --card: 220 100% 8%; /* Azul oscuro para cards */
-    --card-foreground: 60 100% 85%;
+    --card: 216 17% 8%; /* Gris oscuro para cards */
+    --card-foreground: 0 0% 100%;
 
-    --popover: 220 100% 8%;
-    --popover-foreground: 60 100% 85%;
+    --popover: 216 17% 8%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Verde neón como primary */
-    --primary: 127 100% 50%; /* Verde neón #00FF32 */
-    --primary-foreground: 0 0% 0%;
+    /* Colores neón principales */
+    --primary: 158 100% 50%; /* Cyan neón #00FF9F */
+    --primary-foreground: 216 17% 6%;
 
-    /* Azul neón como secondary */
-    --secondary: 200 100% 50%; /* Azul neón #00BFFF */
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 274 100% 70%; /* Púrpura neón #B966FF */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 45 71% 88%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 216 17% 12%;
+    --muted-foreground: 0 0% 60%;
 
     /* Rosa neón como accent */
-    --accent: 320 100% 70%; /* Rosa neón #FF00B7 */
-    --accent-foreground: 0 0% 0%;
+    --accent: 320 100% 65%; /* Rosa/magenta neón #FF3399 */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 45 71% 85%;
-    --input: 45 71% 85%;
-    --ring: 141 49% 24%;
+    --border: 216 17% 20%;
+    --input: 216 17% 12%;
+    --ring: 158 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 12px;
 
-    /* Colores específicos del festival - neones */
-    --festival-green: 127 100% 50%; /* Verde neón */
-    --festival-cream: 60 100% 85%; /* Amarillo neón claro */
-    --festival-pink: 320 100% 70%; /* Rosa neón */
-    --festival-dark: 0 0% 7%; /* Negro */
+    /* Colores específicos del festival */
+    --festival-cyan: 185 100% 50%; /* Cyan brillante #00D4FF */
+    --festival-magenta: 320 100% 65%; /* Magenta #FF3399 */
+    --festival-purple: 274 100% 70%; /* Púrpura #B966FF */
+    --festival-green: 158 100% 50%; /* Verde cyan #00FF9F */
+    --festival-dark: 216 17% 6%; /* Fondo oscuro */
     
-    /* Gradientes neón */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--festival-green)) 0%, hsl(var(--festival-pink)) 50%, hsl(var(--festival-dark)) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(var(--festival-pink)) 0%, hsl(var(--secondary)) 100%);
-    --gradient-section: linear-gradient(180deg, hsl(var(--festival-cream)) 0%, hsl(var(--background)) 100%);
+    /* Gradientes vibrantes */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--festival-magenta)) 0%, hsl(var(--festival-cyan)) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--festival-purple)) 0%, hsl(var(--festival-green)) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--festival-cyan)) 0%, hsl(var(--festival-purple)) 100%);
     
-    /* Sombras festivas */
-    --shadow-festival: 0 20px 60px -10px hsl(var(--festival-green) / 0.3);
-    --shadow-glow: 0 0 40px hsl(var(--festival-pink) / 0.4);
-    --shadow-card: 0 10px 30px -5px hsl(var(--festival-dark) / 0.15);
+    /* Sombras con glow neón */
+    --shadow-neon-cyan: 0 0 30px hsl(var(--festival-cyan) / 0.5);
+    --shadow-neon-magenta: 0 0 30px hsl(var(--festival-magenta) / 0.5);
+    --shadow-card: 0 8px 32px hsl(var(--festival-dark) / 0.8);
     
-    /* Animaciones */
-    --transition-festival: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --bounce-subtle: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Transiciones suaves */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 

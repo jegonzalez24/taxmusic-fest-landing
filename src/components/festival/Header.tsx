@@ -1,121 +1,74 @@
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Music, Menu, X } from "lucide-react";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-festival-dark/95 backdrop-blur-md border-b border-festival-green/30">
-      <div className="container mx-auto px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/10">
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <h1 className="text-2xl font-black text-festival-green">
-              TAX MUSIC
-              <span className="text-festival-pink ml-2">FEST</span>
-            </h1>
+          <div className="flex items-center space-x-3">
+            <div className="p-2 rounded-lg bg-gradient-to-r from-festival-cyan to-festival-magenta">
+              <Music className="h-5 w-5 text-background" />
+            </div>
+            <span className="text-xl font-bold text-foreground tracking-tight">
+              TAX MUSIC FEST
+            </span>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="text-festival-cream hover:text-festival-green transition-colors"
-            >
-              Sobre el Evento
-            </button>
-            <button 
-              onClick={() => scrollToSection('zones')}
-              className="text-festival-cream hover:text-festival-green transition-colors"
-            >
-              Zonas
-            </button>
-            <button 
-              onClick={() => scrollToSection('timeline')}
-              className="text-festival-cream hover:text-festival-green transition-colors"
-            >
-              Programa
-            </button>
-            <button 
-              onClick={() => scrollToSection('lineup')}
-              className="text-festival-cream hover:text-festival-green transition-colors"
-            >
+            <a href="#about" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+              Acerca
+            </a>
+            <a href="#lineup" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
               Line-up
-            </button>
-            <button 
-              onClick={() => scrollToSection('registration')}
-              className="text-festival-cream hover:text-festival-green transition-colors"
-            >
-              Registro
-            </button>
-            <Button 
-              variant="cta" 
-              size="sm"
-              onClick={() => scrollToSection('registration')}
-            >
-              Confirmar Asistencia
+            </a>
+            <a href="#timeline" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+              Agenda
+            </a>
+            <a href="#activities" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+              Experiencias
+            </a>
+            <Button variant="neon" size="sm" className="font-semibold">
+              RSVP
             </Button>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-festival-cream"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
+            className="md:hidden text-foreground hover:text-festival-cyan transition-colors"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-festival-green/30">
+          <div className="md:hidden py-6 border-t border-border/10">
             <nav className="flex flex-col space-y-4">
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="text-festival-cream hover:text-festival-green transition-colors text-left"
-              >
-                Sobre el Evento
-              </button>
-              <button 
-                onClick={() => scrollToSection('zones')}
-                className="text-festival-cream hover:text-festival-green transition-colors text-left"
-              >
-                Zonas
-              </button>
-              <button 
-                onClick={() => scrollToSection('timeline')}
-                className="text-festival-cream hover:text-festival-green transition-colors text-left"
-              >
-                Programa
-              </button>
-              <button 
-                onClick={() => scrollToSection('lineup')}
-                className="text-festival-cream hover:text-festival-green transition-colors text-left"
-              >
+              <a href="#about" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+                Acerca
+              </a>
+              <a href="#lineup" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
                 Line-up
-              </button>
-              <button 
-                onClick={() => scrollToSection('registration')}
-                className="text-festival-cream hover:text-festival-green transition-colors text-left"
-              >
-                Registro
-              </button>
-              <Button 
-                variant="cta" 
-                size="sm"
-                onClick={() => scrollToSection('registration')}
-                className="w-fit"
-              >
-                Confirmar Asistencia
+              </a>
+              <a href="#timeline" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+                Agenda
+              </a>
+              <a href="#activities" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+                Experiencias
+              </a>
+              <Button variant="neon" size="sm" className="w-fit font-semibold">
+                RSVP
               </Button>
             </nav>
           </div>
