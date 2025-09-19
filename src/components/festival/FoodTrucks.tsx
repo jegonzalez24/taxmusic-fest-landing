@@ -157,22 +157,22 @@ export function FoodTrucks() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
             <div className="text-center p-4">
               <Utensils className="h-12 w-12 text-festival-green mx-auto mb-3" />
-              <div className="font-semibold text-festival-dark">Variedad</div>
+              <div className="font-semibold text-festival-white">Variedad</div>
               <div className="text-sm text-muted-foreground">5 opciones gastronómicas</div>
             </div>
             <div className="text-center p-4">
               <Leaf className="h-12 w-12 text-festival-green mx-auto mb-3" />
-              <div className="font-semibold text-festival-dark">Opciones Veggie</div>
+              <div className="font-semibold text-festival-white">Opciones Veggie</div>
               <div className="text-sm text-muted-foreground">Alimentación consciente</div>
             </div>
             <div className="text-center p-4">
               <ChefHat className="h-12 w-12 text-festival-green mx-auto mb-3" />
-              <div className="font-semibold text-festival-dark">Calidad</div>
+              <div className="font-semibold text-festival-white">Calidad</div>
               <div className="text-sm text-muted-foreground">Preparación artesanal</div>
             </div>
             <div className="text-center p-4">
               <Coffee className="h-12 w-12 text-festival-green mx-auto mb-3" />
-              <div className="font-semibold text-festival-dark">Café Premium</div>
+              <div className="font-semibold text-festival-white">Café Premium</div>
               <div className="text-sm text-muted-foreground">100% colombiano</div>
             </div>
           </div>
