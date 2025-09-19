@@ -49,10 +49,13 @@ export default {
         },
         // Colores específicos del festival
         festival: {
+          cyan: "hsl(var(--festival-cyan))",
+          magenta: "hsl(var(--festival-magenta))",
+          purple: "hsl(var(--festival-purple))",
           green: "hsl(var(--festival-green))",
-          cream: "hsl(var(--festival-cream))",
           pink: "hsl(var(--festival-pink))",
           dark: "hsl(var(--festival-dark))",
+          section: "hsl(var(--festival-section))",
         },
       },
       fontFamily: {

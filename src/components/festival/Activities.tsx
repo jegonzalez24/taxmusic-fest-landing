@@ -16,7 +16,7 @@ export function Activities() {
       participants: "Hasta 50 personas",
       description: "El clásico juego coreano donde los participantes deben moverse solo cuando escuchen 'Luz Verde' y quedarse completamente inmóviles con 'Luz Roja'. Una muñeca gigante vigilará cada movimiento. La tensión y la diversión están garantizadas.",
       rules: "Los participantes que se muevan durante 'Luz Roja' quedan eliminados. El objetivo es llegar a la meta en el menor tiempo posible.",
-      color: "from-red-400 to-red-600",
+      color: "from-festival-magenta to-festival-pink",
     },
     {
       id: "ddakji",
@@ -26,17 +26,7 @@ export function Activities() {
       participants: "1 vs 1",
       description: "Juego tradicional coreano con origami de papel. Los participantes deben voltear el ddakji del oponente golpeándolo con el suyo propio. Requiere técnica, precisión y un poco de suerte.",
       rules: "Cada jugador tiene 3 intentos para voltear el ddakji del oponente. El primero en lograrlo gana la partida.",
-      color: "from-blue-400 to-blue-600",
-    },
-    {
-      id: "guerra-cuerda",
-      icon: Users,
-      title: "Guerra de la Cuerda",
-      duration: "10 min por enfrentamiento",
-      participants: "Equipos de 20 personas",
-      description: "Competencia épica entre equipos que pondrá a prueba la fuerza, estrategia y trabajo en equipo. Una experiencia que fortalecerá los vínculos del equipo EY.",
-      rules: "Los equipos se forman por áreas de trabajo. El equipo que logre arrastrar al oponente más allá de la línea central gana.",
-      color: "from-green-400 to-green-600",
+      color: "from-festival-cyan to-festival-purple",
     },
     {
       id: "buscaminas",
@@ -46,7 +36,7 @@ export function Activities() {
       participants: "Individual - hasta 30 personas",
       description: "Versión física del clásico juego donde los participantes deben cruzar un campo evitando las 'minas' ocultas. Memoria, estrategia y nerve son clave para el éxito.",
       rules: "Los participantes deben memorizar el patrón seguro. Un paso en falso significa regresar al inicio.",
-      color: "from-yellow-400 to-orange-500",
+      color: "from-festival-purple to-festival-magenta",
     },
     {
       id: "nota-final",
@@ -56,7 +46,7 @@ export function Activities() {
       participants: "Todos los asistentes",
       description: "Gran competencia musical donde los equipos deben demostrar sus habilidades rítmicas y de coordinación. El challenge que cerrará las experiencias antes del show principal.",
       rules: "Competencia por equipos con desafíos musicales progresivos. El equipo ganador recibe reconocimiento especial.",
-      color: "from-purple-400 to-pink-500",
+      color: "from-festival-cyan to-festival-pink",
     },
   ];
 
@@ -66,7 +56,7 @@ export function Activities() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-black text-festival-dark mb-6">
+            <h2 className="text-5xl md:text-6xl font-black text-foreground mb-6">
               Experiencias
               <span className="text-festival-gradient bg-festival-accent bg-clip-text text-transparent block">
                 Únicas
@@ -92,7 +82,7 @@ export function Activities() {
                       
                       {/* Content */}
                       <div className="flex-1 text-left">
-                        <h3 className="text-2xl font-bold text-festival-dark mb-2">
+                        <h3 className="text-2xl font-bold text-foreground mb-2">
                           {activity.title}
                         </h3>
                         <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
@@ -116,7 +106,7 @@ export function Activities() {
                       </p>
                       
                       <div className="bg-muted/50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-festival-dark mb-2">
+                        <h4 className="font-semibold text-foreground mb-2">
                           Reglas del Juego:
                         </h4>
                         <p className="text-muted-foreground">
@@ -133,7 +123,7 @@ export function Activities() {
           {/* Call to Action */}
           <div className="mt-16 text-center">
             <div className="festival-card p-8 bg-festival-accent/5 border-festival-pink/20">
-              <h3 className="text-2xl font-bold text-festival-dark mb-4">
+              <h3 className="text-2xl font-bold text-foreground mb-4">
                 ¿Listo para el Challenge?
               </h3>
               <p className="text-muted-foreground mb-6">

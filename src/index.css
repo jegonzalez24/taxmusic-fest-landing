@@ -46,7 +46,9 @@ Diseño moderno con fondo oscuro y acentos neón vibrantes
     --festival-magenta: 320 100% 65%; /* Magenta #FF3399 */
     --festival-purple: 274 100% 70%; /* Púrpura #B966FF */
     --festival-green: 158 100% 50%; /* Verde cyan #00FF9F */
+    --festival-pink: 320 100% 75%; /* Rosa vibrante #FF4DB8 */
     --festival-dark: 216 17% 6%; /* Fondo oscuro */
+    --festival-section: 216 17% 8%; /* Fondo secciones */
     
     /* Gradientes vibrantes */
     --gradient-primary: linear-gradient(135deg, hsl(var(--festival-magenta)) 0%, hsl(var(--festival-cyan)) 100%);

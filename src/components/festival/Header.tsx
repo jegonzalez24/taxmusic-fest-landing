@@ -25,9 +25,6 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#about" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
-              Acerca
-            </a>
             <a href="#lineup" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
               Line-up
             </a>
@@ -37,9 +34,12 @@ export function Header() {
             <a href="#activities" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
               Experiencias
             </a>
-            <Button variant="neon" size="sm" className="font-semibold">
-              RSVP
-            </Button>
+            <a href="#foodtrucks" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+              Foodtrucks
+            </a>
+            <a href="#photos" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+              Fotos
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -55,9 +55,6 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-6 border-t border-border/10">
             <nav className="flex flex-col space-y-4">
-              <a href="#about" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
-                Acerca
-              </a>
               <a href="#lineup" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
                 Line-up
               </a>
@@ -67,9 +64,9 @@ export function Header() {
               <a href="#activities" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
                 Experiencias
               </a>
-              <Button variant="neon" size="sm" className="w-fit font-semibold">
-                RSVP
-              </Button>
+              <a href="#photos" className="text-foreground/80 hover:text-festival-cyan transition-colors font-medium">
+                Fotos
+              </a>
             </nav>
           </div>
         )}

@@ -75,7 +75,7 @@ export function FoodTrucks() {
                   <div className={`w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r ${truck.color} flex items-center justify-center text-4xl group-hover:scale-110 transition-transform`}>
                     {truck.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-festival-dark mb-2">
+                  <h3 className="text-2xl font-bold text-festival-white mb-2">
                     {truck.name}
                   </h3>
                   <div className="text-festival-pink font-semibold">
@@ -90,7 +90,7 @@ export function FoodTrucks() {
 
                 {/* Menu */}
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-festival-dark text-center mb-3">
+                  <h4 className="font-semibold text-festival-white text-center mb-3">
                     Especialidades:
                   </h4>
                   <div className="space-y-1">
@@ -120,7 +120,7 @@ export function FoodTrucks() {
                   <div className={`w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r ${truck.color} flex items-center justify-center text-4xl group-hover:scale-110 transition-transform`}>
                     {truck.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-festival-dark mb-2">
+                  <h3 className="text-2xl font-bold text-festival-white mb-2">
                     {truck.name}
                   </h3>
                   <div className="text-festival-pink font-semibold">
@@ -135,7 +135,7 @@ export function FoodTrucks() {
 
                 {/* Menu */}
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-festival-dark text-center mb-3">
+                  <h4 className="font-semibold text-festival-white text-center mb-3">
                     Especialidades:
                   </h4>
                   <div className="space-y-1">
@@ -180,7 +180,7 @@ export function FoodTrucks() {
           {/* CTA */}
           <div className="text-center">
             <div className="festival-card p-8 bg-gradient-to-r from-festival-green/5 to-festival-pink/5 border-festival-accent/20">
-              <h3 className="text-2xl font-bold text-festival-dark mb-4">
+              <h3 className="text-2xl font-bold text-festival-white mb-4">
                 ¿Tienes alguna preferencia alimentaria?
               </h3>
               <p className="text-muted-foreground mb-6">

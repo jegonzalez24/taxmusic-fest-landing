@@ -7,28 +7,28 @@ export function Timeline() {
       title: "Bienvenida & Registro",
       description: "Recepción con kit de bienvenida, acreditación y activación con QR",
       icon: Users,
-      color: "bg-blue-500",
+      color: "bg-festival-cyan",
     },
     {
       time: "8:30 AM",
       title: "Welcome Show",
       description: "Apertura oficial con presentación del evento y activación energética",
       icon: Star,
-      color: "bg-purple-500",
+      color: "bg-festival-purple",
     },
     {
       time: "9:00 AM",
       title: "Apertura de Experiencias",
       description: "Inicio de juegos Luz Verde/Luz Roja, Ddakji, Guerra de la Cuerda",
       icon: Gamepad2,
-      color: "bg-red-500",
+      color: "bg-festival-magenta",
     },
     {
       time: "9:30 AM",
       title: "Activación Food Trucks",
       description: "Apertura de todas las estaciones gastronómicas y zonas chill",
       icon: Clock,
-      color: "bg-orange-500",
+      color: "bg-festival-purple",
     },
     {
       time: "10:30 AM",
@@ -52,7 +52,7 @@ export function Timeline() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-black text-festival-dark mb-6">
+            <h2 className="text-5xl md:text-6xl font-black text-foreground mb-6">
               Programa del
               <span className="text-festival-gradient bg-festival-accent bg-clip-text text-transparent block">
                 Festival
@@ -91,11 +91,11 @@ export function Timeline() {
                       
                       {/* Content */}
                       <div className="flex items-start gap-4">
-                        <div className={`p-3 rounded-full ${event.color.replace('bg-', 'bg-')}/10 flex-shrink-0`}>
+                        <div className={`p-3 rounded-full ${event.color}/10 flex-shrink-0`}>
                           <event.icon className={`h-6 w-6 ${event.color.replace('bg-', 'text-')}`} />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-festival-dark mb-2">
+                          <h3 className="text-xl font-bold text-foreground mb-2">
                             {event.title}
                           </h3>
                           <p className="text-muted-foreground">
@@ -113,7 +113,7 @@ export function Timeline() {
           {/* Duration Summary */}
           <div className="mt-16 text-center">
             <div className="festival-card p-8 bg-festival-accent/10 border-festival-pink/20">
-              <h3 className="text-2xl font-bold text-festival-dark mb-4">
+              <h3 className="text-2xl font-bold text-foreground mb-4">
                 Duración Total del Evento
               </h3>
               <div className="text-4xl font-black text-festival-pink mb-2">

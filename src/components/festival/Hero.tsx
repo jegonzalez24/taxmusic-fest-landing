@@ -10,11 +10,12 @@ export function Hero() {
           
           {/* Left Content */}
           <div className="space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border/20">
-              <Sparkles className="h-4 w-4 text-festival-cyan" />
-              <span className="text-sm font-medium text-foreground/80">Nueva edición — 2025</span>
-            </div>
+          {/* 
+<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border/20">
+  <Sparkles className="h-4 w-4 text-festival-cyan" />
+  <span className="text-sm font-medium text-foreground/80">Nueva edición — 2025</span>
+</div>
+*/}
 
             {/* Main Title */}
             <div className="space-y-4">
@@ -56,9 +57,6 @@ export function Hero() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="gradient" size="lg" className="text-base font-semibold">
-                Confirmar asistencia
-              </Button>
-              <Button variant="outline" size="lg" className="text-base font-semibold">
                 Ver agenda
               </Button>
             </div>

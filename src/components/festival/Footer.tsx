@@ -19,10 +19,6 @@ export function Footer() {
                 experiencias y la energía del equipo EY. Octubre 2025 en Hacienda San Rafael.
               </p>
               
-              <Button variant="cta" size="lg" className="mb-8">
-                Confirmar Asistencia
-              </Button>
-              
               {/* Quick Info */}
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-festival-cream/80">
@@ -37,33 +33,6 @@ export function Footer() {
                   <Phone className="h-5 w-5 text-festival-pink" />
                   <span>+57 1 234 5678</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-xl font-bold mb-6 text-festival-cream">
-                Enlaces Rápidos
-              </h4>
-              <div className="space-y-3">
-                <a href="#programa" className="block text-festival-cream/80 hover:text-festival-pink transition-colors">
-                  Programa del Festival
-                </a>
-                <a href="#experiencias" className="block text-festival-cream/80 hover:text-festival-pink transition-colors">
-                  Experiencias y Juegos
-                </a>
-                <a href="#lineup" className="block text-festival-cream/80 hover:text-festival-pink transition-colors">
-                  Line-up Musical
-                </a>
-                <a href="#foodtrucks" className="block text-festival-cream/80 hover:text-festival-pink transition-colors">
-                  Food Trucks
-                </a>
-                <a href="#registro" className="block text-festival-cream/80 hover:text-festival-pink transition-colors">
-                  Registro
-                </a>
-                <a href="#faq" className="block text-festival-cream/80 hover:text-festival-pink transition-colors">
-                  Preguntas Frecuentes
-                </a>
               </div>
             </div>
 
