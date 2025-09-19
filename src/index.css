@@ -18,20 +18,20 @@ Festival corporativo vibrante con colores EY y energía celebratoria
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 7%;
 
-    /* Verde profundo EY como primary */
-    --primary: 141 49% 24%; /* Verde profundo #1E5F3A */
-    --primary-foreground: 0 0% 100%;
+    /* Verde neón como primary */
+    --primary: 127 100% 50%; /* Verde neón #00FF32 */
+    --primary-foreground: 0 0% 0%;
 
-    /* Crema como secondary */
-    --secondary: 45 71% 92%; /* Crema #F6EBD6 */
-    --secondary-foreground: 0 0% 7%;
+    /* Azul neón como secondary */
+    --secondary: 200 100% 50%; /* Azul neón #00BFFF */
+    --secondary-foreground: 0 0% 0%;
 
     --muted: 45 71% 88%;
     --muted-foreground: 0 0% 45%;
 
-    /* Rosa vibrante como accent */
-    --accent: 332 100% 62%; /* Rosa #FF3B8F */
-    --accent-foreground: 0 0% 100%;
+    /* Rosa neón como accent */
+    --accent: 320 100% 70%; /* Rosa neón #FF00B7 */
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -42,15 +42,15 @@ Festival corporativo vibrante con colores EY y energía celebratoria
 
     --radius: 0.75rem;
 
-    /* Colores específicos del festival */
-    --festival-green: 141 49% 24%; /* Verde profundo */
-    --festival-cream: 45 71% 92%; /* Crema */
-    --festival-pink: 332 100% 62%; /* Rosa vibrante */
+    /* Colores específicos del festival - neones */
+    --festival-green: 127 100% 50%; /* Verde neón */
+    --festival-cream: 60 100% 85%; /* Amarillo neón claro */
+    --festival-pink: 320 100% 70%; /* Rosa neón */
     --festival-dark: 0 0% 7%; /* Negro */
     
-    /* Gradientes */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--festival-green)) 0%, hsl(var(--festival-dark)) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(var(--festival-pink)) 0%, hsl(var(--accent)) 100%);
+    /* Gradientes neón */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--festival-green)) 0%, hsl(var(--festival-pink)) 50%, hsl(var(--festival-dark)) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(var(--festival-pink)) 0%, hsl(var(--secondary)) 100%);
     --gradient-section: linear-gradient(180deg, hsl(var(--festival-cream)) 0%, hsl(var(--background)) 100%);
     
     /* Sombras festivas */

@@ -1,3 +1,4 @@
+import { Header } from "@/components/festival/Header";
 import { Hero } from "@/components/festival/Hero";
 import { About } from "@/components/festival/About";
 import { Zones } from "@/components/festival/Zones";
@@ -12,6 +13,7 @@ import { Footer } from "@/components/festival/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <Header />
       <Hero />
       <About />
       <Zones />
