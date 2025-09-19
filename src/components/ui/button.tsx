@@ -23,7 +23,7 @@ const buttonVariants = cva(
         "festival-secondary": 
           "bg-festival-cream text-festival-dark font-semibold border border-festival-dark/20 transition-all duration-300 hover:bg-festival-dark hover:text-festival-cream hover:scale-105",
         cta: 
-          "bg-festival-accent text-white font-bold text-lg tracking-wide shadow-festival-glow transform transition-all duration-300 hover:scale-110 hover:shadow-festival animate-festival-pulse",
+          "bg-festival-accent text-white font-bold text-lg tracking-wide shadow-festival-glow transform transition-all duration-300 hover:scale-110 hover:shadow-festival",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -9,14 +9,14 @@ Festival corporativo vibrante con colores EY y energía celebratoria
 @layer base {
   :root {
     /* Colores principales del evento */
-    --background: 45 71% 92%; /* Crema #F6EBD6 */
-    --foreground: 0 0% 7%; /* Negro #111111 */
+    --background: 220 100% 5%; /* Azul muy oscuro #000A1A */
+    --foreground: 60 100% 85%; /* Amarillo neón claro para texto */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 7%;
+    --card: 220 100% 8%; /* Azul oscuro para cards */
+    --card-foreground: 60 100% 85%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
+    --popover: 220 100% 8%;
+    --popover-foreground: 60 100% 85%;
 
     /* Verde neón como primary */
     --primary: 127 100% 50%; /* Verde neón #00FF32 */
