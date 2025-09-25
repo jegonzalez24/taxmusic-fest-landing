@@ -128,9 +128,10 @@ export function LineUp() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                  <div className="text-4xl font-bold text-festival-cyan mb-2">100%</div>
-                  <div className="text-muted-foreground">Energía Festival</div>
-                
+                <div className="flex flex-col items-center justify-center col-span-1 md:col-span-3">
+                  <div className="text-4xl font-bold text-festival-cyan mb-2 text-center">100%</div>
+                  <div className="text-muted-foreground text-center">Energía Festival</div>
+                </div>
               </div>
             </div>
           </div>
