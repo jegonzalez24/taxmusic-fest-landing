@@ -7,132 +7,102 @@ export function Timeline() {
       title: "Bienvenida & Registro",
       description: "Recepción con kit de bienvenida, acreditación y activación con QR",
       icon: Users,
-      color: "bg-cyan-500",
-      borderColor: "border-cyan-500",
-      textColor: "text-cyan-500"
+      color: "bg-festival-cyan",
     },
     {
       time: "12:00 PM",
       title: "Welcome Show",
       description: "Apertura oficial con presentación del evento y activación energética",
       icon: Star,
-      color: "bg-purple-500",
-      borderColor: "border-purple-500",
-      textColor: "text-purple-500"
+      color: "bg-festival-purple",
     },
     {
       time: "12:00 PM",
       title: "Food Trucks",
       description: "Apertura de todas las estaciones gastronómicas y zonas chill",
       icon: Clock,
-      color: "bg-green-500",
-      borderColor: "border-green-500",
-      textColor: "text-green-500"
+      color: "bg-festival-purple",
     },
     {
       time: "12:30 PM",
       title: "Apertura de Experiencias",
       description: "Inicio de juegos Luz Verde/Luz Roja, Ddakji, Guerra de la Cuerda (sin más)",
       icon: Gamepad2,
-      color: "bg-pink-500",
-      borderColor: "border-pink-500",
-      textColor: "text-pink-500"
+      color: "bg-festival-magenta",
     },
     {
       time: "10:30 AM",
       title: "Show Fest Principal",
       description: "Presentación en vivo del Grupo Andalucía en tarima principal",
       icon: Music,
-      color: "bg-emerald-500",
-      borderColor: "border-emerald-500",
-      textColor: "text-emerald-500"
+      color: "bg-festival-green",
     },
     {
       time: "12:30 PM",
       title: "Cierre con DJ Set",
       description: "Gran finale con DJ Podri y música electrónica para cerrar con energía",
       icon: Disc,
-      color: "bg-rose-500",
-      borderColor: "border-rose-500",
-      textColor: "text-rose-500"
+      color: "bg-festival-pink",
     },
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
+    <section className="py-20 bg-festival-section">
       <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
+            <h2 className="text-5xl md:text-6xl font-black text-foreground mb-6">
               Programa del
-              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent block">
+              <span className="text-festival-gradient bg-festival-accent bg-clip-text text-transparent block">
                 Festival
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Experiencias continuas diseñadas para maximizar la diversión 
               y el networking entre el equipo.
             </p>
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {events.map((event, index) => (
-              <div 
-                key={index}
-                className="group relative bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden"
-              >
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-slate-900/20 pointer-events-none"></div>
+              <div key={index} className="festival-card p-6">
+                {/* Time Badge */}
+                <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-bold text-white ${event.color} mb-4`}>
+                  {event.time}
+                </div>
                 
-                {/* Card content */}
-                <div className="relative p-8">
-                  {/* Time Badge */}
-                  <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-white ${event.color} mb-6 shadow-lg`}>
-                    <Clock className="w-4 h-4 mr-2" />
-                    {event.time}
+                {/* Content */}
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 rounded-full ${event.color}/10 flex-shrink-0`}>
+                    <event.icon className={`h-6 w-6 ${event.color.replace('bg-', 'text-')}`} />
                   </div>
-                  
-                  {/* Icon */}
-                  <div className={`inline-flex p-4 rounded-2xl ${event.color}/10 ${event.borderColor}/20 border-2 mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <event.icon className={`h-8 w-8 ${event.textColor}`} />
-                  </div>
-                  
-                  {/* Content */}
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-gray-100 transition-colors">
+                    <h3 className="text-xl font-bold text-foreground mb-2">
                       {event.title}
                     </h3>
-                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
+                    <p className="text-muted-foreground">
                       {event.description}
                     </p>
                   </div>
-
-                  {/* Decorative gradient line */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${event.color}/60 via-transparent to-transparent`}></div>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Duration Summary */}
-          <div className="text-center">
-            <div className="relative bg-slate-800/50 backdrop-blur-sm rounded-3xl border border-slate-700/50 p-12 max-w-md mx-auto overflow-hidden">
-              {/* Background decoration */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-cyan-500/5"></div>
-              
-              <div className="relative">
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Duración Total del Evento
-                </h3>
-                <div className="text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-                  5 Horas
-                </div>
-                <p className="text-gray-400">
-                  De experiencias continuas, música en vivo y networking energético
-                </p>
+          <div className="mt-16 text-center">
+            <div className="festival-card p-8 bg-festival-accent/10 border-festival-pink/20">
+              <h3 className="text-2xl font-bold text-foreground mb-4">
+                Duración Total del Evento
+              </h3>
+              <div className="text-4xl font-black text-festival-pink mb-2">
+                5 Horas
               </div>
+              <p className="text-muted-foreground">
+                De experiencias continuas, música en vivo y networking energético
+              </p>
             </div>
           </div>
         </div>
