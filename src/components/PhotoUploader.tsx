@@ -35,7 +35,7 @@ export const PhotoUploader: React.FC = () => {
     if (!webhookUrl) {
       toast({
         title: "Error",
-        description: "Por favor configura tu webhook de Zapier primero",
+        description: "Por favor configura tu URL de Google Apps Script primero",
         variant: "destructive",
       });
       return;
@@ -47,12 +47,11 @@ export const PhotoUploader: React.FC = () => {
       for (const photo of photos) {
         const base64Data = await convertToBase64(photo.file);
         
-        await fetch(webhookUrl, {
+        const response = await fetch(webhookUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          mode: "no-cors",
           body: JSON.stringify({
             fileName: photo.name,
             fileSize: photo.size,
@@ -61,17 +60,21 @@ export const PhotoUploader: React.FC = () => {
             event: "tax_music_fest_photo_upload"
           }),
         });
+
+        if (!response.ok) {
+          throw new Error(`Error al subir ${photo.name}: ${response.status}`);
+        }
       }
 
       toast({
-        title: "¡Fotos enviadas a la nube!",
-        description: `${photos.length} foto(s) enviada(s) correctamente. Revisa tu Zap para confirmar.`,
+        title: "¡Fotos subidas a Google Drive!",
+        description: `${photos.length} foto(s) subida(s) correctamente.`,
       });
     } catch (error) {
-      console.error("Error uploading to cloud:", error);
+      console.error("Error uploading to Google Drive:", error);
       toast({
         title: "Error",
-        description: "Error al subir las fotos. Revisa tu configuración de Zapier.",
+        description: "Error al subir las fotos. Revisa tu configuración de Google Apps Script.",
         variant: "destructive",
       });
     } finally {
@@ -136,7 +139,7 @@ export const PhotoUploader: React.FC = () => {
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Comparte tus mejores momentos del TAX MUSIC FEST. Sube tus fotos para guardarlas en OneDrive.
+              Comparte tus mejores momentos del TAX MUSIC FEST. Sube tus fotos para guardarlas en Google Drive.
             </p>
           </div>
 
@@ -162,23 +165,24 @@ export const PhotoUploader: React.FC = () => {
               <div className="space-y-4 p-6 bg-muted/20 rounded-lg border border-festival-purple/30">
                 <div>
                   <label className="block text-sm font-medium mb-2 text-foreground">
-                    Webhook URL de Zapier
+                    URL de Google Apps Script
                   </label>
                   <Input
                     type="url"
-                    placeholder="https://hooks.zapier.com/hooks/catch/..."
+                    placeholder="https://script.google.com/macros/s/[ID]/exec"
                     value={webhookUrl}
                     onChange={(e) => setWebhookUrl(e.target.value)}
                     className="mb-3"
                   />
                   <div className="text-sm text-muted-foreground space-y-2">
-                    <p><strong>Cómo configurar:</strong></p>
+                    <p><strong>Cómo configurar Google Apps Script:</strong></p>
                     <ol className="list-decimal list-inside space-y-1 text-xs">
-                      <li>Ve a <span className="text-festival-cyan">zapier.com</span> y crea un nuevo Zap</li>
-                      <li>Selecciona <span className="text-festival-green">"Webhooks by Zapier"</span> como trigger</li>
-                      <li>Elige <span className="text-festival-magenta">"Catch Hook"</span></li>
-                      <li>Copia el webhook URL que te da Zapier</li>
-                      <li>Conecta con <span className="text-festival-pink">Google Drive, Dropbox, OneDrive</span>, etc.</li>
+                      <li>Ve a <span className="text-festival-cyan">script.google.com</span></li>
+                      <li>Crea un <span className="text-festival-green">nuevo proyecto</span></li>
+                      <li>Pega el código que te proporcionaré</li>
+                      <li>Haz <span className="text-festival-magenta">"Deploy"</span> como Web App</li>
+                      <li>Copia la URL que te da y pégala aquí</li>
+                      <li>Las fotos se guardarán en <span className="text-festival-pink">Google Drive</span></li>
                     </ol>
                   </div>
                 </div>
