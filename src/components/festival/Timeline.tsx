@@ -64,31 +64,50 @@ export function Timeline() {
             </p>
           </div>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {events.map((event, index) => (
-              <div key={index} className="festival-card p-6">
-                {/* Time Badge */}
-                <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-bold text-white ${event.color} mb-4`}>
-                  {event.time}
-                </div>
-                
-                {/* Content */}
-                <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-full ${event.color}/10 flex-shrink-0`}>
-                    <event.icon className={`h-6 w-6 ${event.color.replace('bg-', 'text-')}`} />
+          {/* Timeline */}
+          <div className="relative">
+            {/* Central Line */}
+            <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-festival-green via-festival-pink to-festival-green"></div>
+
+            {/* Events */}
+            <div className="space-y-12">
+              {events.map((event, index) => (
+                <div 
+                  key={index}
+                  className={`relative flex flex-col md:flex-row items-start md:items-center ${
+                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
+                >
+                  {/* Time Indicator */}
+                  <div className={`absolute left-8 md:left-1/2 transform md:-translate-x-1/2 ${event.color} w-4 h-4 rounded-full border-4 border-white shadow-lg z-10`}></div>
+                  
+                  {/* Content Card */}
+                  <div className={`ml-20 md:ml-0 ${index % 2 === 0 ? 'md:mr-8 md:text-right' : 'md:ml-8'} md:w-5/12`}>
+                    <div className="festival-card p-6">
+                      {/* Time Badge */}
+                      <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-bold text-white ${event.color} mb-4`}>
+                        {event.time}
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="flex items-start gap-4">
+                        <div className={`p-3 rounded-full ${event.color}/10 flex-shrink-0`}>
+                          <event.icon className={`h-6 w-6 ${event.color.replace('bg-', 'text-')}`} />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-foreground mb-2">
+                            {event.title}
+                          </h3>
+                          <p className="text-muted-foreground">
+                            {event.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      {event.title}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {event.description}
-                    </p>
-                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Duration Summary */}
