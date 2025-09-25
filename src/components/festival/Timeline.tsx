@@ -5,14 +5,14 @@ export function Timeline() {
     {
       time: "11:00 AM",
       title: "Bienvenida & Registro",
-      description: "Recepción con kit de bienvenida, acreditación y activación con QR",
+      description: "Bienvenida y registro: Recepción y activación de asistencia con QR",
       icon: Users,
       color: "bg-festival-cyan",
     },
     {
       time: "12:00 PM",
       title: "Welcome Show",
-      description: "Apertura oficial con presentación del evento y activación energética",
+      description: "Apertura oficial con presentación del evento",
       icon: Star,
       color: "bg-festival-purple",
     },
@@ -26,23 +26,9 @@ export function Timeline() {
     {
       time: "12:30 PM",
       title: "Apertura de Experiencias",
-      description: "Inicio de juegos Luz Verde/Luz Roja, Ddakji, Guerra de la Cuerda (sin más)",
+      description: " ",
       icon: Gamepad2,
       color: "bg-festival-magenta",
-    },
-    {
-      time: "10:30 AM",
-      title: "Show Fest Principal",
-      description: "Presentación en vivo del Grupo Andalucía en tarima principal",
-      icon: Music,
-      color: "bg-festival-green",
-    },
-    {
-      time: "12:30 PM",
-      title: "Cierre con DJ Set",
-      description: "Gran finale con DJ Podri y música electrónica para cerrar con energía",
-      icon: Disc,
-      color: "bg-festival-pink",
     },
   ];
 
