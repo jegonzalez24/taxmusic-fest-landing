@@ -1,6 +1,6 @@
 import { Clock, Users, Music, Gamepad2, Star, Disc } from "lucide-react";
 
-export default function Timeline() {
+export function Timeline() {
   const events = [
     {
       time: "11:00 AM",
