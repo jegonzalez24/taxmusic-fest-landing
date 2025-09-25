@@ -63,8 +63,7 @@ export function Activities() {
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Juegos inspirados en El Juego del Calamar adaptados para crear momentos 
-              inolvidables de teambuilding y diversión sana.
+              Juegos diseñados para crear momentos inolvidables
             </p>
           </div>
 

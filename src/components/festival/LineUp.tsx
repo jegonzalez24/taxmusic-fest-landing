@@ -129,14 +129,6 @@ export function LineUp() {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-festival-green mb-2">1.5h</div>
-                  <div className="text-muted-foreground">Música en Vivo</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-festival-pink mb-2">30min</div>
-                  <div className="text-muted-foreground">DJ Set Cierre</div>
-                </div>
-                <div className="text-center">
                   <div className="text-4xl font-bold text-festival-cyan mb-2">100%</div>
                   <div className="text-muted-foreground">Energía Festival</div>
                 </div>

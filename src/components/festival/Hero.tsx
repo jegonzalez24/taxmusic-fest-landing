@@ -32,9 +32,9 @@ export function Hero() {
               </h1>
               
               <p className="text-lg md:text-xl text-foreground/70 max-w-lg leading-relaxed">
-                Un festival corporativo al aire libre donde celebramos logros, talento y energía 
-                colectiva. Beats, luz neón y experiencias inmersivas para cerrar el año con 
-                actitud headliner.
+                Creamos un festival diseñado para romper el molde: un espacio donde el networking tiene beat,
+                 las ideas se celebran como hits y el escenario está hecho para que todos brillemos.
+                 Porque somos energía en estado puro y talento que no se queda quieto
               </p>
             </div>
 
@@ -46,7 +46,7 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-festival-magenta" />
-                <span className="text-foreground font-medium">8:00 p.m. – 1:00 a.m.</span>
+                <span className="text-foreground font-medium">11:00 a.m. – 6:30 p.m.</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-festival-purple" />
@@ -63,7 +63,8 @@ export function Hero() {
 
             {/* Dress Code */}
             <p className="text-sm text-foreground/60">
-              *Dress code sugerido: festival/urbano con acentos neón. Lleva chaqueta ligera para la noche.
+              *Dress code sugerido: Lleva tu mejor outfit de festival (ropa comoda, una buena chauqeta,
+              bloqueador y toda la actitud)
             </p>
           </div>
 

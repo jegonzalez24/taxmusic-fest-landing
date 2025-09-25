@@ -3,7 +3,7 @@ import { Clock, Users, Music, Gamepad2, Star, Disc } from "lucide-react";
 export function Timeline() {
   const events = [
     {
-      time: "8:00 AM",
+      time: "11:00 AM",
       title: "Bienvenida & Registro",
       description: "Recepción con kit de bienvenida, acreditación y activación con QR",
       icon: Users,
@@ -59,7 +59,7 @@ export function Timeline() {
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              5 horas de experiencias continuas diseñadas para maximizar la diversión 
+              Experiencias continuas diseñadas para maximizar la diversión 
               y el networking entre el equipo.
             </p>
           </div>
