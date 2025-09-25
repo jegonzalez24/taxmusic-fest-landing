@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, Image as ImageIcon, X, Download, Eye } from 'lucide-react';
+import { Upload, Image as ImageIcon, X, Download, Eye, Cloud, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 
 interface UploadedPhoto {
@@ -16,7 +17,67 @@ interface UploadedPhoto {
 export const PhotoUploader: React.FC = () => {
   const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<UploadedPhoto | null>(null);
+  const [webhookUrl, setWebhookUrl] = useState<string>('');
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [showConfig, setShowConfig] = useState<boolean>(false);
   const { toast } = useToast();
+
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
+  };
+
+  const uploadToCloud = async (photos: UploadedPhoto[]) => {
+    if (!webhookUrl) {
+      toast({
+        title: "Error",
+        description: "Por favor configura tu webhook de Zapier primero",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsUploading(true);
+
+    try {
+      for (const photo of photos) {
+        const base64Data = await convertToBase64(photo.file);
+        
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "no-cors",
+          body: JSON.stringify({
+            fileName: photo.name,
+            fileSize: photo.size,
+            fileData: base64Data,
+            uploadedAt: new Date().toISOString(),
+            event: "tax_music_fest_photo_upload"
+          }),
+        });
+      }
+
+      toast({
+        title: "¡Fotos enviadas a la nube!",
+        description: `${photos.length} foto(s) enviada(s) correctamente. Revisa tu Zap para confirmar.`,
+      });
+    } catch (error) {
+      console.error("Error uploading to cloud:", error);
+      toast({
+        title: "Error",
+        description: "Error al subir las fotos. Revisa tu configuración de Zapier.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const newPhotos = acceptedFiles.map((file) => ({
@@ -29,8 +90,8 @@ export const PhotoUploader: React.FC = () => {
 
     setPhotos((prev) => [...prev, ...newPhotos]);
     toast({
-      title: "Fotos subidas",
-      description: `${acceptedFiles.length} foto(s) subida(s) correctamente`,
+      title: "Fotos preparadas",
+      description: `${acceptedFiles.length} foto(s) lista(s) para subir a la nube`,
     });
   }, [toast]);
 
@@ -79,6 +140,52 @@ export const PhotoUploader: React.FC = () => {
             </p>
           </div>
 
+          {/* Cloud Configuration */}
+          <div className="festival-card p-8 mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <Cloud className="h-8 w-8 text-festival-green" />
+                <h3 className="text-2xl font-bold text-foreground">Configuración de Nube</h3>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowConfig(!showConfig)}
+                className="border-festival-purple text-festival-purple hover:bg-festival-purple hover:text-festival-dark"
+              >
+                <Settings className="h-4 w-4 mr-2" />
+                {showConfig ? 'Ocultar' : 'Configurar'}
+              </Button>
+            </div>
+
+            {showConfig && (
+              <div className="space-y-4 p-6 bg-muted/20 rounded-lg border border-festival-purple/30">
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-foreground">
+                    Webhook URL de Zapier
+                  </label>
+                  <Input
+                    type="url"
+                    placeholder="https://hooks.zapier.com/hooks/catch/..."
+                    value={webhookUrl}
+                    onChange={(e) => setWebhookUrl(e.target.value)}
+                    className="mb-3"
+                  />
+                  <div className="text-sm text-muted-foreground space-y-2">
+                    <p><strong>Cómo configurar:</strong></p>
+                    <ol className="list-decimal list-inside space-y-1 text-xs">
+                      <li>Ve a <span className="text-festival-cyan">zapier.com</span> y crea un nuevo Zap</li>
+                      <li>Selecciona <span className="text-festival-green">"Webhooks by Zapier"</span> como trigger</li>
+                      <li>Elige <span className="text-festival-magenta">"Catch Hook"</span></li>
+                      <li>Copia el webhook URL que te da Zapier</li>
+                      <li>Conecta con <span className="text-festival-pink">Google Drive, Dropbox, OneDrive</span>, etc.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Upload Area */}
           <div className="festival-card p-8 mb-12">
             <div
@@ -111,10 +218,29 @@ export const PhotoUploader: React.FC = () => {
           {/* Photos Grid */}
           {photos.length > 0 && (
             <div className="mb-12">
-              <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 text-foreground">
-                <ImageIcon className="h-8 w-8 text-festival-pink" />
-                Fotos Subidas ({photos.length})
-              </h3>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-3xl font-bold flex items-center gap-3 text-foreground">
+                  <ImageIcon className="h-8 w-8 text-festival-pink" />
+                  Fotos Preparadas ({photos.length})
+                </h3>
+                <Button
+                  onClick={() => uploadToCloud(photos)}
+                  disabled={isUploading || photos.length === 0 || !webhookUrl}
+                  className="bg-gradient-to-r from-festival-green to-festival-cyan text-festival-dark font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-[0_0_20px_hsl(var(--festival-green)/0.5)] transition-all duration-300 disabled:opacity-50"
+                >
+                  {isUploading ? (
+                    <>
+                      <Upload className="h-5 w-5 mr-2 animate-spin" />
+                      Subiendo...
+                    </>
+                  ) : (
+                    <>
+                      <Cloud className="h-5 w-5 mr-2" />
+                      Subir a la Nube
+                    </>
+                  )}
+                </Button>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {photos.map((photo) => (
                   <div key={photo.id} className="festival-card overflow-hidden group">
