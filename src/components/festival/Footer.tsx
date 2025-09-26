@@ -27,11 +27,11 @@ export function Footer() {
                 </div>
                 <div className="flex items-center gap-3 text-festival-cream/80">
                   <Mail className="h-5 w-5 text-festival-pink" />
-                  <span>taxmusicfest@ey.com</span>
+                  <span>admin@bituinlab.com</span>
                 </div>
                 <div className="flex items-center gap-3 text-festival-cream/80">
                   <Phone className="h-5 w-5 text-festival-pink" />
-                  <span>+57 1 234 5678</span>
+                  <span>+57 300 6945276</span>
                 </div>
               </div>
             </div>
