@@ -3,33 +3,47 @@ import { Clock, Users, Music, Gamepad2, Star, Disc } from "lucide-react";
 export function Timeline() {
   const events = [
     {
-      time: "11:00 AM",
+      time: "8:00 AM",
       title: "Bienvenida & Registro",
       description: "Bienvenida y registro: Recepción y activación de asistencia con QR",
       icon: Users,
       color: "bg-festival-cyan",
     },
     {
-      time: "12:00 PM",
+      time: "8:30 A M",
       title: "Welcome Show",
       description: "Apertura oficial con presentación del evento",
       icon: Star,
       color: "bg-festival-purple",
     },
     {
-      time: "12:00 PM",
-      title: "Food Trucks",
-      description: "Apertura de todas las estaciones gastronómicas y zonas chill",
-      icon: Clock,
-      color: "bg-festival-purple",
-    },
-    {
-      time: "12:30 PM",
+      time: "9:00 AM",
       title: "Apertura de Experiencias",
       description: " ",
       icon: Gamepad2,
       color: "bg-festival-magenta",
     },
+    {
+      time: "9:30 AM",
+      title: "Food Trucks",
+      description: "Apertura de todas las estaciones gastronómicas y zonas chill",
+      icon: Clock,
+      color: "bg-festival-purple",
+    },
+      {
+        time: "10:30 AM",
+        title: "Show Fest Principal",
+        description: "Presentación en vivo del Grupo Andalucia en tarima principal",
+        icon: Gamepad2,
+        color: "bg-festival-geen",
+      },
+    {
+        time: "12:30 PM",
+        title: "Cierre con DJ Set",
+        description: "Gran final con DJ Podri y música electrónica para cerrar con energía",
+        icon: Gamepad2,
+        color: "bg-festival-geen",
+      },
   ];
 
   return (
