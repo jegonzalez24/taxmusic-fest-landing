@@ -197,24 +197,24 @@ export const PhotoUploader: React.FC = () => {
             <div
               {...getRootProps()}
               className={`
-                border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-all duration-300
+                border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-all duration-300 bg-gray-100 grayscale
                 ${isDragActive 
-                  ? 'border-festival-cyan bg-festival-cyan/5 shadow-[0_0_30px_hsl(var(--festival-cyan)/0.3)]' 
-                  : 'border-border hover:border-festival-magenta hover:bg-festival-magenta/5 hover:shadow-[0_0_20px_hsl(var(--festival-magenta)/0.2)]'
+                  ? 'border-gray-400 bg-gray-200 shadow-lg' 
+                  : 'border-gray-300 hover:border-gray-500 hover:bg-gray-200 hover:shadow-lg'
                 }
               `}
             >
               <input {...getInputProps()} />
-              <Upload className="mx-auto mb-4 h-16 w-16 text-festival-cyan" />
-              <h3 className="text-2xl font-bold mb-2 text-foreground">
+              <Upload className="mx-auto mb-4 h-16 w-16 text-gray-600" />
+              <h3 className="text-2xl font-bold mb-2 text-black">
                 {isDragActive ? 'Suelta las fotos aquí' : 'Arrastra fotos aquí o haz clic para seleccionar'}
               </h3>
-              <p className="text-muted-foreground mb-6 text-lg">
-                Soporta JPG, PNG, GIF, WebP hasta 10MB por archivo
+              <p className="mb-6 text-lg text-gray-700">
+                Soporta <span className="font-semibold">JPG, PNG, GIF, WebP</span> hasta <span className="font-semibold">10MB</span> por archivo
               </p>
               <Button 
                 variant="outline" 
-                className="mt-4 border-festival-cyan text-festival-cyan hover:bg-festival-cyan hover:text-festival-dark font-semibold"
+                className="mt-4 border-gray-500 text-gray-700 hover:bg-gray-300 hover:text-black font-semibold"
               >
                 Seleccionar Archivos
               </Button>
