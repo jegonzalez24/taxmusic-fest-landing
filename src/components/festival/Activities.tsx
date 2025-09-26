@@ -126,7 +126,7 @@ export function Activities() {
                 Además tenemos experiencias para parchar como:
               </h4>
               <p className="text-muted-foreground">
-                Zona de maquillaje • Mini bao - 2 unidades • Soltería - 2 unidades • Jenga gigante - 1 unidad • Footbolin - 2 unidades • Juez de apariencias - 2 unidades • Beer pong - 1 unidad • 4 en linea Gigante - 1 unidad. Experiencia completa: 3 para aventar (Mini bao y mortal kombat), 1 rompiendo switch (mario kart), [GG] sutilitanos
+                Zona de maquillaje • Mini tejo - 2 unidades • Bolirana - 2 unidades • Jenga gigante - 1 unidad • Footbolin - 2 unidades • jaula de basketball - 2 unidades • Beer pong - 1 unidad • 4 en linea Gigante - 1 unidad • Zona de videojuegos con : 2 Play stations (Fifa y Mortal kombat) y 1 Nintendo switch (mario kart)
               </p>
               <h3 className="text-2xl font-bold text-foreground mb-4">
                 ¿Listo para el Challenge?
