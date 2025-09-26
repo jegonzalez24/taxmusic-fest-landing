@@ -177,7 +177,7 @@ export function FoodTrucks() {
             </div>
           </div>
 
-          {/* CTA */}
+          {/* CTA 
           <div className="text-center">
             <div className="festival-card p-8 bg-gradient-to-r from-festival-green/5 to-festival-pink/5 border-festival-accent/20">
               <h3 className="text-2xl font-bold text-festival-white mb-4">
@@ -191,7 +191,7 @@ export function FoodTrucks() {
                 Ver Menús Completos
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
