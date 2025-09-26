@@ -1,41 +1,145 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, Image as ImageIcon, X, Download, Eye, Cloud, Settings } from 'lucide-react';
+import { Upload, Image as ImageIcon, X, Download, Eye, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 interface UploadedPhoto {
   id: string;
-  file: File;
-  url: string;
-  name: string;
-  size: number;
+  file_name: string;
+  file_path: string;
+  file_size: number;
+  created_at: string;
+  url?: string;
 }
 
 export const PhotoUploader: React.FC = () => {
   const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<UploadedPhoto | null>(null);
-  const [webhookUrl, setWebhookUrl] = useState<string>('');
   const [isUploading, setIsUploading] = useState<boolean>(false);
-  const [showConfig, setShowConfig] = useState<boolean>(false);
+  const [user, setUser] = useState<any>(null);
   const { toast } = useToast();
 
-  const convertToBase64 = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = error => reject(error);
-    });
-  };
+  useEffect(() => {
+    // Check if user is authenticated
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+      
+      if (user) {
+        loadUserPhotos();
+      }
+    };
 
-  const uploadToCloud = async (photos: UploadedPhoto[]) => {
-    if (!webhookUrl) {
+    checkUser();
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user || null);
+      if (session?.user) {
+        loadUserPhotos();
+      } else {
+        setPhotos([]);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const loadUserPhotos = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('photos')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      // Generate signed URLs for the photos
+      const photosWithUrls = await Promise.all(
+        data.map(async (photo: UploadedPhoto) => {
+          const { data: signedUrl } = await supabase.storage
+            .from('photos')
+            .createSignedUrl(photo.file_path, 3600); // 1 hour expiry
+
+          return {
+            ...photo,
+            url: signedUrl?.signedUrl
+          };
+        })
+      );
+
+      setPhotos(photosWithUrls);
+    } catch (error) {
+      console.error('Error loading photos:', error);
       toast({
         title: "Error",
-        description: "Por favor configura tu URL de Google Apps Script primero",
+        description: "Error al cargar las fotos",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const uploadPhotoToSupabase = async (file: File) => {
+    if (!user) {
+      toast({
+        title: "Error",
+        description: "Necesitas estar autenticado para subir fotos",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      // Create unique file path with user ID
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const filePath = `${user.id}/${fileName}`;
+
+      // Upload file to Supabase Storage
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('photos')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      // Save metadata to database
+      const { data: photoData, error: dbError } = await supabase
+        .from('photos')
+        .insert({
+          user_id: user.id,
+          file_name: file.name,
+          file_path: filePath,
+          file_size: file.size,
+          mime_type: file.type
+        })
+        .select()
+        .single();
+
+      if (dbError) throw dbError;
+
+      // Generate signed URL
+      const { data: signedUrl } = await supabase.storage
+        .from('photos')
+        .createSignedUrl(filePath, 3600);
+
+      return {
+        ...photoData,
+        url: signedUrl?.signedUrl
+      };
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+      throw error;
+    }
+  };
+
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    if (!user) {
+      toast({
+        title: "Error",
+        description: "Necesitas estar autenticado para subir fotos",
         variant: "destructive",
       });
       return;
@@ -44,59 +148,26 @@ export const PhotoUploader: React.FC = () => {
     setIsUploading(true);
 
     try {
-      for (const photo of photos) {
-        const base64Data = await convertToBase64(photo.file);
-        
-        const response = await fetch(webhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fileName: photo.name,
-            fileSize: photo.size,
-            fileData: base64Data,
-            uploadedAt: new Date().toISOString(),
-            event: "tax_music_fest_photo_upload"
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error(`Error al subir ${photo.name}: ${response.status}`);
-        }
-      }
-
+      const uploadPromises = acceptedFiles.map(file => uploadPhotoToSupabase(file));
+      const uploadedPhotos = await Promise.all(uploadPromises);
+      
+      setPhotos(prev => [...uploadedPhotos.filter(Boolean), ...prev]);
+      
       toast({
-        title: "¡Fotos subidas a Google Drive!",
-        description: `${photos.length} foto(s) subida(s) correctamente.`,
+        title: "¡Fotos subidas!",
+        description: `${acceptedFiles.length} foto(s) subida(s) correctamente`,
       });
     } catch (error) {
-      console.error("Error uploading to Google Drive:", error);
+      console.error('Error uploading photos:', error);
       toast({
         title: "Error",
-        description: "Error al subir las fotos. Revisa tu configuración de Google Apps Script.",
+        description: "Error al subir las fotos",
         variant: "destructive",
       });
     } finally {
       setIsUploading(false);
     }
-  };
-
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    const newPhotos = acceptedFiles.map((file) => ({
-      id: Math.random().toString(36).substr(2, 9),
-      file,
-      url: URL.createObjectURL(file),
-      name: file.name,
-      size: file.size,
-    }));
-
-    setPhotos((prev) => [...prev, ...newPhotos]);
-    toast({
-      title: "Fotos preparadas",
-      description: `${acceptedFiles.length} foto(s) lista(s) para subir a la nube`,
-    });
-  }, [toast]);
+  }, [user, toast]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -106,16 +177,43 @@ export const PhotoUploader: React.FC = () => {
     multiple: true,
   });
 
-  const removePhoto = (id: string) => {
-    setPhotos((prev) => {
-      const photo = prev.find(p => p.id === id);
-      if (photo) {
-        URL.revokeObjectURL(photo.url);
+  const deletePhoto = async (photoId: string) => {
+    try {
+      const photo = photos.find(p => p.id === photoId);
+      if (!photo) return;
+
+      // Delete from storage
+      const { error: storageError } = await supabase.storage
+        .from('photos')
+        .remove([photo.file_path]);
+
+      if (storageError) throw storageError;
+
+      // Delete from database
+      const { error: dbError } = await supabase
+        .from('photos')
+        .delete()
+        .eq('id', photoId);
+
+      if (dbError) throw dbError;
+
+      setPhotos(prev => prev.filter(p => p.id !== photoId));
+      
+      if (selectedPhoto?.id === photoId) {
+        setSelectedPhoto(null);
       }
-      return prev.filter(p => p.id !== id);
-    });
-    if (selectedPhoto?.id === id) {
-      setSelectedPhoto(null);
+
+      toast({
+        title: "Foto eliminada",
+        description: "La foto ha sido eliminada correctamente",
+      });
+    } catch (error) {
+      console.error('Error deleting photo:', error);
+      toast({
+        title: "Error",
+        description: "Error al eliminar la foto",
+        variant: "destructive",
+      });
     }
   };
 
@@ -139,123 +237,77 @@ export const PhotoUploader: React.FC = () => {
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Comparte tus mejores momentos del TAX MUSIC FEST. Sube tus fotos para guardarlas en Google Drive.
+              Comparte tus mejores momentos del TAX MUSIC FEST. Tus fotos se guardan automáticamente en la nube.
             </p>
           </div>
 
-          {/*
-          Cloud Configuration
-          <div className="festival-card p-8 mb-8">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <Cloud className="h-8 w-8 text-festival-green" />
-                <h3 className="text-2xl font-bold text-foreground">Configuración de Nube</h3>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowConfig(!showConfig)}
-                className="border-festival-purple text-festival-purple hover:bg-festival-purple hover:text-festival-dark"
-              >
-                <Settings className="h-4 w-4 mr-2" />
-                {showConfig ? 'Ocultar' : 'Configurar'}
-              </Button>
-            </div>
-
-            {showConfig && (
-              <div className="space-y-4 p-6 bg-muted/20 rounded-lg border border-festival-purple/30">
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-foreground">
-                    URL de Google Apps Script
-                  </label>
-                  <Input
-                    type="url"
-                    placeholder="https://script.google.com/macros/s/[ID]/exec"
-                    value={webhookUrl}
-                    onChange={(e) => setWebhookUrl(e.target.value)}
-                    className="mb-3"
-                  />
-                  <div className="text-sm text-muted-foreground space-y-2">
-                    <p><strong>Cómo configurar Google Apps Script:</strong></p>
-                    <ol className="list-decimal list-inside space-y-1 text-xs">
-                      <li>Ve a <span className="text-festival-cyan">script.google.com</span></li>
-                      <li>Crea un <span className="text-festival-green">nuevo proyecto</span></li>
-                      <li>Pega el código que te proporcionaré</li>
-                      <li>Haz <span className="text-festival-magenta">"Deploy"</span> como Web App</li>
-                      <li>Copia la URL que te da y pégala aquí</li>
-                      <li>Las fotos se guardarán en <span className="text-festival-pink">Google Drive</span></li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-          */}
-
-          {/* Upload Area */}
-          <div className="festival-card p-8 mb-12">
-            <div
-              {...getRootProps()}
-              className={`
-                border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-all duration-300 bg-gray-100 grayscale
-                ${isDragActive 
-                  ? 'border-gray-400 bg-gray-200 shadow-lg' 
-                  : 'border-gray-300 hover:border-gray-500 hover:bg-gray-200 hover:shadow-lg'
-                }
-              `}
-            >
-              <input {...getInputProps()} />
-              <Upload className="mx-auto mb-4 h-16 w-16 text-gray-600" />
-              <h3 className="text-2xl font-bold mb-2 text-black">
-                {isDragActive ? 'Suelta las fotos aquí' : 'Arrastra fotos aquí o haz clic para seleccionar'}
-              </h3>
-              <p className="mb-6 text-lg text-gray-700">
-                Soporta <span className="font-semibold">JPG, PNG, GIF, WebP</span> hasta <span className="font-semibold">10MB</span> por archivo
+          {!user && (
+            <div className="festival-card p-8 mb-8 text-center">
+              <h3 className="text-2xl font-bold text-foreground mb-4">Autenticación requerida</h3>
+              <p className="text-muted-foreground mb-6">
+                Necesitas estar autenticado para subir y ver tus fotos.
               </p>
-              <Button 
-                variant="outline" 
-                className="mt-4 border-gray-500 text-gray-700 hover:bg-gray-300 hover:text-black font-semibold"
-              >
-                Seleccionar Archivos
-              </Button>
+              <div className="space-x-4">
+                <Button 
+                  onClick={() => supabase.auth.signInWithOAuth({ provider: 'google' })}
+                  className="bg-festival-green hover:bg-festival-green/80"
+                >
+                  Iniciar sesión con Google
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Photos Grid */}
-          {photos.length > 0 && (
+          {user && (
+            <div className="festival-card p-8 mb-12">
+              <div
+                {...getRootProps()}
+                className={`
+                  border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-all duration-300
+                  ${isDragActive 
+                    ? 'border-festival-cyan bg-festival-cyan/10 shadow-lg' 
+                    : 'border-festival-purple/50 hover:border-festival-cyan hover:bg-festival-cyan/5 hover:shadow-lg'
+                  }
+                  ${isUploading ? 'pointer-events-none opacity-50' : ''}
+                `}
+              >
+                <input {...getInputProps()} />
+                <Upload className={`mx-auto mb-4 h-16 w-16 ${isUploading ? 'animate-spin text-festival-cyan' : 'text-festival-purple'}`} />
+                <h3 className="text-2xl font-bold mb-2 text-foreground">
+                  {isUploading ? 'Subiendo fotos...' : (isDragActive ? 'Suelta las fotos aquí' : 'Arrastra fotos aquí o haz clic para seleccionar')}
+                </h3>
+                <p className="mb-6 text-lg text-muted-foreground">
+                  Soporta <span className="font-semibold text-festival-cyan">JPG, PNG, GIF, WebP</span> hasta <span className="font-semibold text-festival-green">10MB</span> por archivo
+                </p>
+                {!isUploading && (
+                  <Button 
+                    variant="outline" 
+                    className="mt-4 border-festival-purple text-festival-purple hover:bg-festival-purple hover:text-festival-dark font-semibold"
+                  >
+                    Seleccionar Archivos
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {photos.length > 0 && user && (
             <div className="mb-12">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-3xl font-bold flex items-center gap-3 text-foreground">
                   <ImageIcon className="h-8 w-8 text-festival-pink" />
-                  Fotos Preparadas ({photos.length})
+                  Mis Fotos ({photos.length})
                 </h3>
-                <Button
-                  onClick={() => uploadToCloud(photos)}
-                  disabled={isUploading || photos.length === 0 || !webhookUrl}
-                  className="bg-gradient-to-r from-festival-green to-festival-cyan text-festival-dark font-bold px-8 py-3 rounded-lg shadow-lg hover:shadow-[0_0_20px_hsl(var(--festival-green)/0.5)] transition-all duration-300 disabled:opacity-50"
-                >
-                  {isUploading ? (
-                    <>
-                      <Upload className="h-5 w-5 mr-2 animate-spin" />
-                      Subiendo...
-                    </>
-                  ) : (
-                    <>
-                      <Cloud className="h-5 w-5 mr-2" />
-                      Subir a la Nube
-                    </>
-                  )}
-                </Button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {photos.map((photo) => (
-                  <div key={photo.id} className="festival-card overflow-hidden group">
-                    <div className="relative">
-                      <img
-                        src={photo.url}
-                        alt={photo.name}
-                        className="w-full h-48 object-cover"
-                      />
+                    <div key={photo.id} className="festival-card overflow-hidden group">
+                      <div className="relative">
+                        <img
+                          src={photo.url}
+                          alt={photo.file_name}
+                          className="w-full h-48 object-cover"
+                        />
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
                         <Button
                           size="sm"
@@ -271,23 +323,24 @@ export const PhotoUploader: React.FC = () => {
                           variant="outline"
                           asChild
                         >
-                          <a href={photo.url} download={photo.name}>
+                          <a href={photo.url} download={photo.file_name}>
                             <Download className="h-4 w-4" />
                           </a>
                         </Button>
                         <Button
                           size="sm"
                           variant="destructive"
-                          onClick={() => removePhoto(photo.id)}
+                          onClick={() => deletePhoto(photo.id)}
+                          className="bg-red-500/20 text-red-500 border-red-500 hover:bg-red-500 hover:text-white"
                         >
-                          <X className="h-4 w-4" />
+                          <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
                     </div>
-                    <div className="p-4">
-                      <h4 className="font-semibold truncate mb-1 text-foreground">{photo.name}</h4>
-                      <p className="text-sm text-muted-foreground">{formatFileSize(photo.size)}</p>
-                    </div>
+                      <div className="p-4">
+                        <h4 className="font-semibold truncate mb-1 text-foreground">{photo.file_name}</h4>
+                        <p className="text-sm text-muted-foreground">{formatFileSize(photo.file_size)}</p>
+                      </div>
                   </div>
                 ))}
               </div>
@@ -308,17 +361,17 @@ export const PhotoUploader: React.FC = () => {
               </Button>
               <img
                 src={selectedPhoto.url}
-                alt={selectedPhoto.name}
+                alt={selectedPhoto.file_name}
                 className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-[0_0_40px_hsl(var(--festival-cyan)/0.3)]"
               />
             </div>
           </div>
         )}
 
-          {photos.length === 0 && (
+          {photos.length === 0 && user && (
             <div className="text-center py-16">
               <ImageIcon className="mx-auto h-24 w-24 text-festival-purple mb-6" />
-              <h3 className="text-2xl font-bold mb-4 text-foreground">No hay fotos aún</h3>
+              <h3 className="text-2xl font-bold mb-4 text-foreground">No tienes fotos aún</h3>
               <p className="text-muted-foreground text-lg">
                 Comienza subiendo tus primeras fotos del festival usando el área de arriba
               </p>
