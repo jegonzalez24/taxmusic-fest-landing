@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Clock, Sparkles } from "lucide-react";
-import heroImage from "@/assets/taxday.jpg";
+import heroImage from "@/assets/taxday.webp";
 
 export function Hero() {
   return (
