@@ -82,17 +82,14 @@ export function Footer() {
               {/* Logos */}
               <div className="flex items-center gap-8">
                 <div className="text-2xl font-black">
-                  <span className="text-festival-green">EY</span>
-                  <span className="text-festival-cream"> TAX</span>
+                  <span className="text-festival-green">TAX</span>
+                  <span className="text-festival-cream"> MUSIC FEST</span>
                 </div>
-                <div className="text-sm text-festival-cream/60">
-                  Building a better working world
-                </div>
+
               </div>
 
               {/* Copyright */}
               <div className="text-center md:text-right text-festival-cream/60 text-sm">
-                <p>&copy; 2024 EY Tax Team. Todos los derechos reservados.</p>
                 <p className="mt-1">TAX MUSIC FEST - Octubre 2025</p>
               </div>
             </div>
