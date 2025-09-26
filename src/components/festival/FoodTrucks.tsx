@@ -75,7 +75,7 @@ export function FoodTrucks() {
                   <div className={`w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r ${truck.color} flex items-center justify-center text-4xl group-hover:scale-110 transition-transform`}>
                     {truck.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-festival-white mb-2">
+                  <h3 className="text-2xl font-bold text-black mb-2">
                     {truck.name}
                   </h3>
                   <div className="text-festival-pink font-semibold">
@@ -84,20 +84,20 @@ export function FoodTrucks() {
                 </div>
 
                 {/* Description */}
-                <p className="text-muted-foreground text-center mb-6">
+                <p className="text-black text-center mb-6">
                   {truck.description}
                 </p>
 
                 {/* Menu */}
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-festival-white text-center mb-3">
+                  <h4 className="font-semibold text-black text-center mb-3">
                     Especialidades:
                   </h4>
                   <div className="space-y-1">
                     {truck.menu.map((item, itemIndex) => (
                       <div 
                         key={itemIndex}
-                        className="text-sm text-muted-foreground text-center py-1 px-3 bg-muted/30 rounded-full"
+                        className="text-sm text-black text-center py-1 px-3 bg-muted/30 rounded-full"
                       >
                         {item}
                       </div>
@@ -120,7 +120,7 @@ export function FoodTrucks() {
                   <div className={`w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r ${truck.color} flex items-center justify-center text-4xl group-hover:scale-110 transition-transform`}>
                     {truck.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-festival-white mb-2">
+                  <h3 className="text-2xl font-bold text-black mb-2">
                     {truck.name}
                   </h3>
                   <div className="text-festival-pink font-semibold">
@@ -129,20 +129,20 @@ export function FoodTrucks() {
                 </div>
 
                 {/* Description */}
-                <p className="text-muted-foreground text-center mb-6">
+                <p className="text-black text-center mb-6">
                   {truck.description}
                 </p>
 
                 {/* Menu */}
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-festival-white text-center mb-3">
+                  <h4 className="font-semibold text-black text-center mb-3">
                     Especialidades:
                   </h4>
                   <div className="space-y-1">
                     {truck.menu.map((item, itemIndex) => (
                       <div 
                         key={itemIndex}
-                        className="text-sm text-muted-foreground text-center py-1 px-3 bg-muted/30 rounded-full"
+                        className="text-sm text-black text-center py-1 px-3 bg-muted/30 rounded-full"
                       >
                         {item}
                       </div>
