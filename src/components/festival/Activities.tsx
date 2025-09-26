@@ -123,11 +123,26 @@ export function Activities() {
           <div className="mt-16 text-center">
             <div className="festival-card p-8 bg-festival-accent/5 border-festival-pink/20">
               <h4 className="text-xl font-bold text-foreground mb-4">
-                Además tenemos experiencias para parchar como:
+                Además tenemos experiencias para parchar:
               </h4>
-              <p className="text-muted-foreground">
-                Zona de maquillaje • Mini tejo - 2 unidades • Bolirana - 2 unidades • Jenga gigante - 1 unidad • Footbolin - 2 unidades • jaula de basketball - 2 unidades • Beer pong - 1 unidad • 4 en linea Gigante - 1 unidad • Zona de videojuegos con : 2 Play stations (Fifa y Mortal kombat) y 1 Nintendo switch (mario kart)
-              </p>
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                {[
+                  'Zona de maquillaje',
+                  'Mini tejo (2)',
+                  'Bolirana (2)',
+                  'Jenga gigante',
+                  'Footbolin (2)',
+                  'Jaula de basketball (2)',
+                  'Beer pong',
+                  '4 en línea gigante',
+                  'Videojuegos: 2 PlayStations (Fifa, Mortal Kombat)',
+                  '1 Nintendo Switch (Mario Kart)'
+                ].map((exp, idx) => (
+                  <span key={idx} className="px-4 py-2 rounded-full bg-white text-black font-medium shadow text-sm border border-festival-pink/30">
+                    {exp}
+                  </span>
+                ))}
+              </div>
               <h3 className="text-2xl font-bold text-foreground mb-4">
                 ¿Listo para el Challenge?
               </h3>
