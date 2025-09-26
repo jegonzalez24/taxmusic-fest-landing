@@ -76,7 +76,7 @@ export function Hero() {
               <img 
                 src={heroImage} 
                 alt="TAX Music Fest - Festival scene with neon lights"
-                className="w-[400px] h-[400px] object-contain object-center mx-auto bg-black"
+                className="w-[520px] h-[520px] object-contain object-center mx-auto rounded-3xl"
               />
               {/* Floating Labels */}
               <div className="absolute bottom-6 left-6 right-6 flex justify-between">
