@@ -80,19 +80,19 @@ export function Hero() {
               />
               {/* Neon Buttons */}
               <div className="flex justify-center gap-4 mt-8">
-                <a href="#experiencias">
+                <a href="#activities">
                   <Button size="lg" className="bg-gradient-to-r from-festival-cyan via-festival-green to-festival-magenta text-white font-bold shadow-lg border-2 border-festival-cyan hover:brightness-125">
                     Experiencias
                   </Button>
                 </a>
-                <a href="#zona-chill">
+                <a href="#foodtrucks">
                   <Button size="lg" className="bg-gradient-to-r from-festival-pink via-festival-cream to-festival-purple text-black font-bold shadow-lg border-2 border-festival-pink hover:brightness-125">
-                    Zona Chill
+                    Foodtrucks
                   </Button>
                 </a>
-                <a href="#live-dj">
+                <a href="#lineup">
                   <Button size="lg" className="bg-gradient-to-r from-festival-purple via-festival-magenta to-festival-cyan text-white font-bold shadow-lg border-2 border-festival-purple hover:brightness-125">
-                    Live DJ
+                    Line-up
                   </Button>
                 </a>
               </div>
