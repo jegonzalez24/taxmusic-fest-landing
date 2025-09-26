@@ -122,6 +122,12 @@ export function Activities() {
           {/* Call to Action */}
           <div className="mt-16 text-center">
             <div className="festival-card p-8 bg-festival-accent/5 border-festival-pink/20">
+              <h4 className="text-xl font-bold text-foreground mb-4">
+                Además tenemos experiencias para parchar como:
+              </h4>
+              <p className="text-muted-foreground">
+                Zona de maquillaje • Mini bao - 2 unidades • Soltería - 2 unidades • Jenga gigante - 1 unidad • Footbolin - 2 unidades • Juez de apariencias - 2 unidades • Beer pong - 1 unidad • 4 en linea Gigante - 1 unidad. Experiencia completa: 3 para aventar (Mini bao y mortal kombat), 1 rompiendo switch (mario kart), [GG] sutilitanos
+              </p>
               <h3 className="text-2xl font-bold text-foreground mb-4">
                 ¿Listo para el Challenge?
               </h3>
@@ -133,12 +139,7 @@ export function Activities() {
                 Premios especiales para los equipos ganadores
               </div>
               
-              <h4 className="text-xl font-bold text-foreground mb-4">
-                Además tenemos experiencias para parchar como:
-              </h4>
-              <p className="text-muted-foreground">
-                Zona de maquillaje • Mini bao - 2 unidades • Soltería - 2 unidades • Jenga gigante - 1 unidad • Footbolin - 2 unidades • Juez de apariencias - 2 unidades • Beer pong - 1 unidad • 4 en linea Gigante - 1 unidad. Experiencia completa: 3 para aventar (Mini bao y mortal kombat), 1 rompiendo switch (mario kart), [GG] sutilitanos
-              </p>
+              
             </div>
           </div>
         </div>
