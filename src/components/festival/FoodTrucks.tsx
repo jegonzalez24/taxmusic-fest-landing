@@ -68,7 +68,7 @@ export function FoodTrucks() {
             {foodTrucks.slice(0, 3).map((truck, index) => (
               <div 
                 key={index}
-                className="festival-card p-6 group h-full"
+                className="festival-card p-6 group h-full bg-gray-100"
               >
                 {/* Truck Header */}
                 <div className="text-center mb-6">
@@ -113,7 +113,7 @@ export function FoodTrucks() {
             {foodTrucks.slice(3, 5).map((truck, index) => (
               <div 
                 key={index + 3}
-                className="festival-card p-6 group h-full"
+                className="festival-card p-6 group h-full bg-gray-100"
               >
                 {/* Truck Header */}
                 <div className="text-center mb-6">
