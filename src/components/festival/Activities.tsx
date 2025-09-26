@@ -120,7 +120,7 @@ export function Activities() {
           </Accordion>
             <div className="festival-card p-8 bg-festival-accent/5 border-festival-pink/20">
               <h4 className="text-xl font-bold text-foreground mb-4 text-center">
-                Además tenemos experiencias para parchar:
+                Además tenemos experiencias para parchar como:
               </h4>
               <div className="flex flex-wrap justify-center gap-2 mb-6">
                 {[
