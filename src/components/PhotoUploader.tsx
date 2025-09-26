@@ -143,7 +143,8 @@ export const PhotoUploader: React.FC = () => {
             </p>
           </div>
 
-          {/* Cloud Configuration */}
+          {/*
+          Cloud Configuration
           <div className="festival-card p-8 mb-8">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
@@ -189,6 +190,7 @@ export const PhotoUploader: React.FC = () => {
               </div>
             )}
           </div>
+          */}
 
           {/* Upload Area */}
           <div className="festival-card p-8 mb-12">
