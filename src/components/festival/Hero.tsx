@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Clock, Sparkles } from "lucide-react";
-import heroImage from "@/assets/hero-festival-neon.jpg";
+import heroImage from "@/assets/taxday.jpg";
 
 export function Hero() {
   return (
