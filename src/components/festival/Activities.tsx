@@ -57,9 +57,9 @@ export function Activities() {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-black text-foreground mb-6">
-              Experiencias
+              Team
               <span className="text-festival-gradient bg-festival-accent bg-clip-text text-transparent block">
-                Únicas
+                Building
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
