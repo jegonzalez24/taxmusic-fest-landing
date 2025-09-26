@@ -68,13 +68,13 @@ export function FAQ() {
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem key={faq.id} value={faq.id} className="border-none">
-                <div className="festival-card overflow-hidden">
+                <div className="festival-card overflow-hidden bg-gray-100">
                   <AccordionTrigger className="hover:no-underline p-6">
                     <div className="flex items-center gap-4 w-full text-left">
                       <div className="w-12 h-12 bg-festival-green/10 rounded-full flex items-center justify-center flex-shrink-0">
                         <faq.icon className="h-6 w-6 text-festival-green" />
                       </div>
-                      <h3 className="text-xl font-bold text-festival-dark">
+                      <h3 className="text-xl font-bold text-black">
                         {faq.question}
                       </h3>
                     </div>
@@ -82,7 +82,7 @@ export function FAQ() {
                   
                   <AccordionContent>
                     <div className="px-6 pb-6 ml-16">
-                      <p className="text-muted-foreground leading-relaxed text-lg">
+                      <p className="text-black leading-relaxed text-lg">
                         {faq.answer}
                       </p>
                     </div>
