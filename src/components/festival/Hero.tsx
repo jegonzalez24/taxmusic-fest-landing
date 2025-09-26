@@ -76,7 +76,7 @@ export function Hero() {
               <img 
                 src={heroImage} 
                 alt="TAX Music Fest - Festival scene with neon lights"
-                className="w-[520px] h-[520px] object-contain object-center mx-auto rounded-3xl"
+                className="w-[640px] h-[640px] object-contain object-center mx-auto rounded-3xl"
               />
               {/* Neon Buttons */}
               <div className="flex justify-center gap-4 mt-8">
