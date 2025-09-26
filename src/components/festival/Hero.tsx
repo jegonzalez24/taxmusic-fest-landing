@@ -56,9 +56,11 @@ export function Hero() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="gradient" size="lg" className="text-base font-semibold">
-                Ver agenda
-              </Button>
+              <a href="#timeline">
+                <Button variant="gradient" size="lg" className="text-base font-semibold">
+                  Ver agenda
+                </Button>
+              </a>
             </div>
 
             {/* Dress Code */}
