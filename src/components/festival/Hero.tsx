@@ -72,13 +72,13 @@ export function Hero() {
 
           {/* Right Image */}
           <div className="relative lg:block hidden">
-            <div className="relative rounded-3xl overflow-hidden">
+            <div className="relative rounded-3xl overflow-hidden flex justify-center items-center">
               <img 
                 src={heroImage} 
                 alt="TAX Music Fest - Festival scene with neon lights"
-                className="w-full h-[600px] object-cover"
+                className="max-w-[520px] w-full h-[600px] object-cover object-center"
+                style={{margin: '0 auto', display: 'block'}}
               />
-              
               {/* Floating Labels */}
               <div className="absolute bottom-6 left-6 right-6 flex justify-between">
                 <div className="bg-background/80 backdrop-blur-md rounded-xl px-4 py-2 border border-border/20">
