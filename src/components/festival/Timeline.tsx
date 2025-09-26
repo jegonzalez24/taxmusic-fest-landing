@@ -79,10 +79,10 @@ export function Timeline() {
                     <event.icon className={`h-6 w-6 ${event.color.replace('bg-', 'text-')}`} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">
+                    <h3 className="text-xl font-bold text-black mb-2">
                       {event.title}
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-gray-500">
                       {event.description}
                     </p>
                   </div>
