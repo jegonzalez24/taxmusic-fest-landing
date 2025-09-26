@@ -119,8 +119,8 @@ export function Activities() {
             ))}
           </Accordion>
 
-            <div className="festival-card p-8 bg-festival-accent/5 border-festival-pink/20">
-              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6 text-center">Zonas:</h2>
+            <div className="festival-card p-8 bg-festival-accent/5 border-festival-pink/20 mb-12">
+              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6 text-center">Zonas de experiencias:</h2>
               <h4 className="text-xl font-bold text-foreground mb-4 text-center">
                 Además tenemos experiencias para parchar como:
               </h4>
