@@ -67,7 +67,7 @@ export function Timeline() {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {events.map((event, index) => (
-              <div key={index} className="festival-card p-6">
+              <div key={index} className="festival-card p-6 bg-white">
                 {/* Time Badge */}
                 <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-bold text-white ${event.color} mb-4`}>
                   {event.time}
