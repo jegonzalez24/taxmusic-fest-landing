@@ -118,9 +118,6 @@ export function Activities() {
               </AccordionItem>
             ))}
           </Accordion>
-
-          {/* Call to Action */}
-          <div className="mt-16 text-center">
             <div className="festival-card p-8 bg-festival-accent/5 border-festival-pink/20">
               <h4 className="text-xl font-bold text-foreground mb-4">
                 Además tenemos experiencias para parchar:
@@ -143,6 +140,9 @@ export function Activities() {
                   </span>
                 ))}
               </div>
+          {/* Call to Action */}
+          <div className="mt-16 text-center">
+            
               <h3 className="text-2xl font-bold text-foreground mb-4">
                 ¿Listo para el Challenge?
               </h3>
