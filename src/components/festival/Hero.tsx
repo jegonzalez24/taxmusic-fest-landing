@@ -78,34 +78,22 @@ export function Hero() {
                 alt="TAX Music Fest - Festival scene with neon lights"
                 className="w-[520px] h-[520px] object-contain object-center mx-auto rounded-3xl"
               />
-              {/* Floating Labels */}
-              <div className="absolute bottom-6 left-6 right-6 flex justify-between">
-                <div className="bg-background/80 backdrop-blur-md rounded-xl px-4 py-2 border border-border/20">
-                  <span className="text-xs font-medium text-foreground">Experiencias</span>
-                </div>
-                <div className="bg-background/80 backdrop-blur-md rounded-xl px-4 py-2 border border-border/20">
-                  <span className="text-xs font-medium text-foreground">Zona Chill</span>
-                </div>
-                <div className="bg-background/80 backdrop-blur-md rounded-xl px-4 py-2 border border-border/20">
-                  <span className="text-xs font-medium text-foreground">Live DJ</span>
-                </div>
-              </div>
               {/* Neon Buttons */}
               <div className="flex justify-center gap-4 mt-8">
                 <a href="#experiencias">
-                  <button className="px-6 py-3 rounded-xl font-bold text-white text-base shadow-lg bg-gradient-to-r from-festival-cyan via-festival-green to-festival-magenta hover:brightness-125 border-2 border-festival-cyan">
+                  <Button size="lg" className="bg-gradient-to-r from-festival-cyan via-festival-green to-festival-magenta text-white font-bold shadow-lg border-2 border-festival-cyan hover:brightness-125">
                     Experiencias
-                  </button>
+                  </Button>
                 </a>
                 <a href="#zona-chill">
-                  <button className="px-6 py-3 rounded-xl font-bold text-black text-base shadow-lg bg-gradient-to-r from-festival-pink via-festival-cream to-festival-purple hover:brightness-125 border-2 border-festival-pink">
+                  <Button size="lg" className="bg-gradient-to-r from-festival-pink via-festival-cream to-festival-purple text-black font-bold shadow-lg border-2 border-festival-pink hover:brightness-125">
                     Zona Chill
-                  </button>
+                  </Button>
                 </a>
                 <a href="#live-dj">
-                  <button className="px-6 py-3 rounded-xl font-bold text-white text-base shadow-lg bg-gradient-to-r from-festival-purple via-festival-magenta to-festival-cyan hover:brightness-125 border-2 border-festival-purple">
+                  <Button size="lg" className="bg-gradient-to-r from-festival-purple via-festival-magenta to-festival-cyan text-white font-bold shadow-lg border-2 border-festival-purple hover:brightness-125">
                     Live DJ
-                  </button>
+                  </Button>
                 </a>
               </div>
             </div>
