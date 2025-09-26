@@ -34,15 +34,15 @@ export function Timeline() {
         time: "10:30 AM",
         title: "Show Fest Principal",
         description: "Presentación en vivo del Grupo Andalucia en tarima principal",
-        icon: Gamepad2,
-        color: "bg-festival-geen",
+        icon: Star,
+        color: "bg-festival-cyan",
       },
     {
         time: "12:30 PM",
         title: "Cierre con DJ Set",
         description: "Gran final con DJ Podri y música electrónica para cerrar con energía",
-        icon: Gamepad2,
-        color: "bg-festival-geen",
+        icon: Clock,
+        color: "bg-festival-magenta",
       },
   ];
 
