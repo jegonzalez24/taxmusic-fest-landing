@@ -98,7 +98,7 @@ export function Timeline() {
                 Duración Total del Evento
               </h3>
               <div className="text-4xl font-black text-festival-pink mb-2">
-                5 Horas
+                9 Horas
               </div>
               <p className="text-muted-foreground">
                 De experiencias continuas, música en vivo y networking energético
