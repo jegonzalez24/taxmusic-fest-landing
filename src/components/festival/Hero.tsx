@@ -63,7 +63,7 @@ export function Hero() {
 
             {/* Dress Code */}
             <p className="text-sm text-foreground/60">
-              *Dress code sugerido: Lleva tu mejor outfit de festival (ropa comoda, una buena chaqueta,
+              *Dress code sugerido: Lleva tu mejor outfit de festival (ropa cómoda, una buena chaqueta,
               bloqueador y toda la actitud)
             </p>
           </div>
