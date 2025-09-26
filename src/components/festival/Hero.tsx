@@ -46,7 +46,7 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-festival-magenta" />
-                <span className="text-foreground font-medium">11:00 a.m. – 6:30 p.m.</span>
+                <span className="text-foreground font-medium">11:00 a.m. – 8:00 p.m.</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-festival-purple" />
