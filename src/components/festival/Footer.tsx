@@ -77,20 +77,19 @@ export function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-festival-cream/20 pt-8">
+          <div className="border-t border-festival-cream/20 pt-8 bg-white">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               {/* Logos */}
               <div className="flex items-center gap-8">
                 <div className="text-2xl font-black">
                   <span className="text-festival-green">TAX</span>
-                  <span className="text-festival-cream"> MUSIC FEST</span>
+                  <span className="text-black"> MUSIC FEST</span>
                 </div>
-
               </div>
 
               {/* Copyright */}
-              <div className="text-center md:text-right text-festival-cream/60 text-sm">
-                <p className="mt-1">TAX MUSIC FEST - Octubre 2025</p>
+              <div className="text-center md:text-right text-black/60 text-sm">
+                <p className="mt-1 text-black">TAX MUSIC FEST - Octubre 2025</p>
               </div>
             </div>
           </div>
