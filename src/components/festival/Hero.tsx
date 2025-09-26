@@ -90,6 +90,24 @@ export function Hero() {
                   <span className="text-xs font-medium text-foreground">Live DJ</span>
                 </div>
               </div>
+              {/* Neon Buttons */}
+              <div className="flex justify-center gap-4 mt-8">
+                <a href="#experiencias">
+                  <button className="px-6 py-3 rounded-xl font-bold text-white text-base shadow-lg bg-gradient-to-r from-festival-cyan via-festival-green to-festival-magenta hover:brightness-125 border-2 border-festival-cyan">
+                    Experiencias
+                  </button>
+                </a>
+                <a href="#zona-chill">
+                  <button className="px-6 py-3 rounded-xl font-bold text-black text-base shadow-lg bg-gradient-to-r from-festival-pink via-festival-cream to-festival-purple hover:brightness-125 border-2 border-festival-pink">
+                    Zona Chill
+                  </button>
+                </a>
+                <a href="#live-dj">
+                  <button className="px-6 py-3 rounded-xl font-bold text-white text-base shadow-lg bg-gradient-to-r from-festival-purple via-festival-magenta to-festival-cyan hover:brightness-125 border-2 border-festival-purple">
+                    Live DJ
+                  </button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
