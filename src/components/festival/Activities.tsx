@@ -68,10 +68,10 @@ export function Activities() {
           </div>
 
           {/* Activities Accordion */}
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-4 pb-12">
             {activities.map((activity, index) => (
-              <AccordionItem key={activity.id} value={activity.id} className="border-none">
-                <div className="festival-card overflow-hidden">
+              <AccordionItem key={activity.id} value={activity.id} className="border-none pb-8">
+                <div className="festival-card overflow-hidden pb-8">
                   <AccordionTrigger className="hover:no-underline p-6">
                     <div className="flex items-center gap-6 w-full">
                       {/* Icon */}
@@ -119,7 +119,7 @@ export function Activities() {
             ))}
           </Accordion>
 
-            <div className="festival-card p-8 bg-festival-accent/5 border-festival-pink/20 mb-12">
+            <div className="festival-card p-8 pb-16 bg-festival-accent/5 border-festival-pink/20 mb-12">
               <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6 text-center">Zonas de experiencias:</h2>
               <h4 className="text-xl font-bold text-foreground mb-4 text-center">
                 Además tenemos experiencias para parchar como:
