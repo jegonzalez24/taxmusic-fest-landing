@@ -75,22 +75,20 @@ export const PhotoUploader: React.FC = () => {
 
   const loadPhotos = async () => {
     try {
-      // Load all photos (public access - no user filtering needed)
+      // Load all photos with public access
       const { data, error } = await supabase
         .from('photos')
         .select('*')
         .order('created_at', { ascending: false });
 
       if (error) {
-        // If table doesn't exist or has RLS issues, just show empty state
-        console.log('Photos table not accessible, starting with empty state');
+        console.error('Error loading photos:', error);
         setPhotos([]);
         return;
       }
 
-      // For public storage, we can directly construct the URLs
+      // Construct public URLs for all photos
       const photosWithUrls = data.map((photo: UploadedPhoto) => {
-        // Construct public URL for the photo
         const { data: publicUrl } = supabase.storage
           .from('photos')
           .getPublicUrl(photo.file_path);
@@ -104,14 +102,13 @@ export const PhotoUploader: React.FC = () => {
       setPhotos(photosWithUrls);
     } catch (error) {
       console.error('Error loading photos:', error);
-      // Don't show error toast, just start with empty state
       setPhotos([]);
     }
   };
 
   const uploadPhotoToSupabase = async (file: File) => {
     try {
-      // Create unique file path using session ID to avoid RLS issues
+      // Create unique file path using session ID
       const fileExt = file.name.split('.').pop();
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
       const filePath = `${sessionId}/${fileName}`;
@@ -133,31 +130,36 @@ export const PhotoUploader: React.FC = () => {
 
       console.log('Upload successful:', uploadData);
 
-      // Create local record (skip database for now to avoid RLS issues)
-      const photoData: UploadedPhoto = {
-        id: `local_${Date.now()}_${Math.random().toString(36).substring(2)}`,
+      // Save to database with public access
+      const { data: dbData, error: dbError } = await supabase
+        .from('photos')
+        .insert({
+          file_name: file.name,
+          file_path: filePath,
+          file_size: file.size,
+          mime_type: file.type,
+          user_id: null // No authentication required
+        })
+        .select()
+        .single();
+
+      if (dbError) {
+        console.error('Database insert error:', dbError);
+        // If database fails, still return the uploaded file info
+      }
+
+      // Get public URL
+      const { data } = supabase.storage
+        .from('photos')
+        .getPublicUrl(filePath);
+
+      return {
+        id: dbData?.id || `local_${Date.now()}_${Math.random().toString(36).substring(2)}`,
         file_name: file.name,
         file_path: filePath,
         file_size: file.size,
-        created_at: new Date().toISOString()
-      };
-
-      // Try to get public URL
-      let publicUrl;
-      try {
-        const { data } = supabase.storage
-          .from('photos')
-          .getPublicUrl(filePath);
-        publicUrl = data?.publicUrl;
-      } catch (urlError) {
-        console.warn('Could not get public URL:', urlError);
-        // Fallback: construct URL manually
-        publicUrl = `${supabase.supabaseUrl}/storage/v1/object/public/photos/${filePath}`;
-      }
-
-      return {
-        ...photoData,
-        url: publicUrl
+        created_at: dbData?.created_at || new Date().toISOString(),
+        url: data?.publicUrl
       };
     } catch (error) {
       console.error('Error uploading photo:', error);
@@ -274,7 +276,9 @@ export const PhotoUploader: React.FC = () => {
         .from('photos')
         .remove([photo.file_path]);
 
-      if (storageError) throw storageError;
+      if (storageError) {
+        console.error('Storage deletion error:', storageError);
+      }
 
       // Delete from database
       const { error: dbError } = await supabase
@@ -282,8 +286,11 @@ export const PhotoUploader: React.FC = () => {
         .delete()
         .eq('id', photoId);
 
-      if (dbError) throw dbError;
+      if (dbError) {
+        console.error('Database deletion error:', dbError);
+      }
 
+      // Remove from local state regardless of backend errors
       setPhotos(prev => prev.filter(p => p.id !== photoId));
       
       if (selectedPhoto?.id === photoId) {
