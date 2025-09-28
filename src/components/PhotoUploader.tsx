@@ -335,30 +335,30 @@ export const PhotoUploader: React.FC = () => {
             </p>
           </div>
 
-          <div className="festival-card p-8 mb-12">
+          <div className="bg-gray-200 p-8 mb-12 rounded-lg border border-gray-300">
             <div
               {...getRootProps()}
               className={`
-                border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-all duration-300
+                border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-all duration-300 bg-gray-100
                 ${isDragActive 
-                  ? 'border-festival-cyan bg-festival-cyan/10 shadow-lg' 
-                  : 'border-festival-purple/50 hover:border-festival-cyan hover:bg-festival-cyan/5 hover:shadow-lg'
+                  ? 'border-gray-700 bg-gray-200 shadow-lg' 
+                  : 'border-gray-500 hover:border-gray-700 hover:bg-gray-200 hover:shadow-lg'
                 }
                 ${isUploading ? 'pointer-events-none opacity-50' : ''}
               `}
             >
               <input {...getInputProps()} />
-              <Upload className={`mx-auto mb-4 h-16 w-16 ${isUploading ? 'animate-spin text-festival-cyan' : 'text-festival-purple'}`} />
-              <h3 className="text-2xl font-bold mb-2 text-foreground">
+              <Upload className={`mx-auto mb-4 h-16 w-16 ${isUploading ? 'animate-spin text-gray-700' : 'text-gray-600'}`} />
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">
                 {isUploading ? 'Subiendo fotos...' : (isDragActive ? 'Suelta las fotos aquí' : 'Arrastra fotos aquí o haz clic para seleccionar')}
               </h3>
-              <p className="mb-6 text-lg text-muted-foreground">
-                Soporta <span className="font-semibold text-festival-cyan">JPG, PNG, GIF, WebP</span> hasta <span className="font-semibold text-festival-green">10MB</span> por archivo
+              <p className="mb-6 text-lg text-gray-700">
+                Soporta <span className="font-semibold text-gray-900">JPG, PNG, GIF, WebP</span> hasta <span className="font-semibold text-gray-900">10MB</span> por archivo
               </p>
               {!isUploading && (
                 <Button 
                   variant="outline" 
-                  className="mt-4 border-festival-purple text-festival-purple hover:bg-festival-purple hover:text-festival-dark font-semibold"
+                  className="mt-4 border-gray-600 text-gray-800 hover:bg-gray-600 hover:text-white font-semibold bg-white"
                 >
                   Seleccionar Archivos
                 </Button>
