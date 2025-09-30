@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Music, Mic } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Mic, Music, Star } from "lucide-react";
 
 export const KaraokeSignup = () => {
   const [email, setEmail] = useState("");
@@ -13,10 +13,10 @@ export const KaraokeSignup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email.trim()) {
+    if (!email || !email.includes("@")) {
       toast({
-        title: "Error",
-        description: "Por favor ingresa tu correo electrónico",
+        title: "Email inválido",
+        description: "Por favor ingresa un email válido",
         variant: "destructive",
       });
       return;
@@ -26,15 +26,15 @@ export const KaraokeSignup = () => {
 
     try {
       const { error } = await supabase
-        .from('karaoke_emails')
+        .from("karaoke_emails")
         .insert([{ email: email.trim().toLowerCase() }]);
 
       if (error) {
-        if (error.code === '23505') { // Unique constraint violation
+        if (error.code === "23505") { // Unique constraint violation
           toast({
-            title: "¡Ya estás registrado!",
-            description: "Este correo ya está en nuestra lista de karaoke",
-            variant: "default",
+            title: "Email ya registrado",
+            description: "Este email ya está inscrito para el karaoke",
+            variant: "destructive",
           });
         } else {
           throw error;
@@ -42,16 +42,15 @@ export const KaraokeSignup = () => {
       } else {
         toast({
           title: "¡Registrado exitosamente!",
-          description: "Te contactaremos pronto para tu momento de estrella",
-          variant: "default",
+          description: "Te contactaremos pronto con más detalles del karaoke",
         });
         setEmail("");
       }
     } catch (error) {
-      console.error('Error saving email:', error);
+      console.error("Error submitting email:", error);
       toast({
         title: "Error",
-        description: "Hubo un problema al registrar tu correo. Inténtalo de nuevo.",
+        description: "Hubo un problema al registrar tu email. Intenta de nuevo.",
         variant: "destructive",
       });
     } finally {
@@ -60,57 +59,73 @@ export const KaraokeSignup = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-primary via-primary-variant to-secondary relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-5"></div>
-      <div className="absolute top-10 left-10 text-accent/20">
-        <Music size={80} />
-      </div>
-      <div className="absolute bottom-10 right-10 text-accent/20">
-        <Mic size={100} />
-      </div>
+    <section className="py-20 bg-gradient-to-br from-purple-900 via-pink-800 to-red-900 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-30" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <Mic className="text-accent" size={48} />
-            <h2 className="text-6xl font-bold text-white festival-glow">
-              KARAOKE
-            </h2>
-            <Music className="text-accent" size={48} />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Icons decoration */}
+          <div className="flex justify-center items-center space-x-8 mb-8">
+            <Mic className="h-16 w-16 text-yellow-400 animate-bounce" />
+            <Music className="h-20 w-20 text-pink-400 animate-pulse" />
+            <Star className="h-16 w-16 text-cyan-400 animate-bounce" style={{ animationDelay: "0.5s" }} />
           </div>
-          
-          <p className="text-2xl text-white/90 font-medium leading-relaxed max-w-3xl mx-auto">
-            ¿Alguna vez has soñado con cantar frente a 
-            <span className="text-accent font-bold"> 500 personas</span>? 
-            <br />
-            Si la respuesta es <span className="text-accent font-bold">SÍ</span>, 
-            deja tu correo y cumple tu sueño en el TAX Music Fest
-          </p>
-        </div>
 
-        <div className="festival-card p-8 max-w-2xl mx-auto">
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-            <Input
-              type="email"
-              placeholder="tu-email@ejemplo.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 h-14 text-lg bg-white/10 border-white/30 text-white placeholder:text-white/60 focus:border-accent focus:ring-accent"
-              disabled={isSubmitting}
-            />
-            <Button
-              type="submit"
-              variant="cta"
-              className="h-14 px-8 text-lg font-bold"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Registrando..." : "¡Quiero Cantar!"}
-            </Button>
-          </form>
+          {/* Main heading */}
+          <h2 className="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-yellow-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent animate-pulse">
+            KARAOKE
+          </h2>
+
+          {/* Catchphrase */}
+          <p className="text-2xl md:text-3xl font-bold text-white mb-8 leading-tight">
+            ¿Alguna vez has soñado con cantar frente a 
+            <span className="text-yellow-400 animate-pulse"> 500 personas</span>?
+          </p>
           
-          <p className="text-white/70 text-sm mt-4 text-center">
-            Tu correo será usado únicamente para contactarte sobre el karaoke del festival
+          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium">
+            🎤 ¡Sí! Entonces deja tu correo y te contactamos con todos los detalles
+          </p>
+
+          {/* Email signup form */}
+          <div className="max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="relative">
+                <Input
+                  type="email"
+                  placeholder="tu-email@ejemplo.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="h-14 text-lg px-6 bg-white/90 border-2 border-white/50 focus:border-yellow-400 focus:ring-yellow-400 text-gray-900 placeholder-gray-600"
+                  disabled={isSubmitting}
+                />
+              </div>
+              
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-14 text-lg font-bold bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black border-none shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black"></div>
+                    <span>Registrando...</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <Mic className="h-5 w-5" />
+                    <span>¡QUIERO CANTAR!</span>
+                  </div>
+                )}
+              </Button>
+            </form>
+          </div>
+
+          {/* Additional text */}
+          <p className="text-sm text-gray-300 mt-6 opacity-80">
+            * Espacios limitados • Solo mayores de 18 años • Evento gratuito
           </p>
         </div>
       </div>
