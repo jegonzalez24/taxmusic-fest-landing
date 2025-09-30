@@ -86,7 +86,7 @@ export const KaraokeSignup = () => {
           </p>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 font-medium">
-            🎤 ¡Sí! Entonces deja tu correo y te contactamos con todos los detalles
+            🎤 ¡Sí! Entonces deja tu correo 
           </p>
 
           {/* Email signup form */}
@@ -125,7 +125,7 @@ export const KaraokeSignup = () => {
 
           {/* Additional text */}
           <p className="text-sm text-muted-foreground mt-6 opacity-80">
-            * Espacios limitados • Solo mayores de 18 años • Evento gratuito
+           
           </p>
         </div>
       </div>
