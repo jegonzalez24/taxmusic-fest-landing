@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      karaoke_emails: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       photos: {
         Row: {
           created_at: string

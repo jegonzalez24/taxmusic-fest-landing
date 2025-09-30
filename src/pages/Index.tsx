@@ -1,5 +1,6 @@
 import { Header } from "@/components/festival/Header";
 import { Hero } from "@/components/festival/Hero";
+import { KaraokeSignup } from "@/components/festival/KaraokeSignup";
 import { Timeline } from "@/components/festival/Timeline";
 import { Activities } from "@/components/festival/Activities";
 import { LineUp } from "@/components/festival/LineUp";
@@ -12,6 +13,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <KaraokeSignup />
       <div id="lineup">
         <LineUp />
       </div>
