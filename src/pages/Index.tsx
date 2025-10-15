@@ -7,6 +7,7 @@ import { LineUp } from "@/components/festival/LineUp";
 import { PhotoUploader } from "@/components/PhotoUploader";
 import { Footer } from "@/components/festival/Footer";
 import { FoodTrucks } from "@/components/festival/FoodTrucks";
+import { DressCode } from "@/components/festival/DressCode";
 
 const Index = () => {
   return (
@@ -25,6 +26,9 @@ const Index = () => {
       </div>
       <div id="foodtrucks">
         <FoodTrucks />
+      </div>
+      <div id="dresscode">
+        <DressCode />
       </div>
       <div id="photos">
         <PhotoUploader />
