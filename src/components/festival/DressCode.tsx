@@ -4,6 +4,13 @@ import dresscode3 from "@/assets/dresscode-3.png";
 import dresscode4 from "@/assets/dresscode-4.png";
 import dresscode5 from "@/assets/dresscode-5.png";
 import dresscode6 from "@/assets/dresscode-6.png";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const DressCode = () => {
   const images = [
@@ -27,31 +34,32 @@ export const DressCode = () => {
           </p>
         </div>
 
-        {/* Collage Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`
-                relative overflow-hidden rounded-lg festival-card
-                ${index === 0 ? 'md:row-span-2' : ''}
-                ${index === 3 ? 'md:col-span-2' : ''}
-                hover:scale-105 transition-transform duration-300
-              `}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-                style={{
-                  minHeight: index === 0 ? '400px' : '200px',
-                  maxHeight: index === 0 ? '600px' : '400px',
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-festival-dark/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-            </div>
-          ))}
-        </div>
+        <Carousel
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          className="w-full max-w-5xl mx-auto"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {images.map((image, index) => (
+              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                <div className="p-1">
+                  <div className="relative overflow-hidden rounded-lg festival-card group">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-[400px] md:h-[500px] object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-festival-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-0 md:-left-12" />
+          <CarouselNext className="right-0 md:-right-12" />
+        </Carousel>
       </div>
     </section>
   );
