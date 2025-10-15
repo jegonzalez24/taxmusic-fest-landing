@@ -20,9 +20,8 @@ export function Hero() {
             {/* Main Title */}
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground leading-tight">
-                Brilla tu potencial
                 <br />
-                en{" "}
+                {" "}
                 <span className="bg-gradient-to-r from-festival-cyan via-festival-magenta to-festival-purple bg-clip-text text-transparent">
                   TAX
                 </span>{" "}
@@ -34,7 +33,7 @@ export function Hero() {
               <p className="text-lg md:text-xl text-foreground/70 max-w-lg leading-relaxed">
                 Creamos un festival diseñado para romper el molde: un espacio donde el networking tiene beat,
                  las ideas se celebran como hits y el escenario está hecho para que todos brillemos.
-                 Porque somos energía en estado puro y talento que no se queda quieto
+                 Porque somos energía en estado puro y talento que no se queda quieto.
               </p>
             </div>
 

@@ -60,8 +60,8 @@ export function About() {
                     donde cada experiencia fortalezca los vínculos del equipo.
                   </p>
                   <p>
-                    Durante 5 horas intensas, vivirás música en vivo, participarás en juegos 
-                    únicos inspirados en El Juego del Calamar, disfrutarás de food trucks 
+                    Durante 9 horas intensas, vivirás música en vivo, participarás en juegos 
+                    únicos, disfrutarás de food trucks 
                     gourmet y crearás recuerdos que durarán mucho más que cualquier reunión tradicional.
                   </p>
                 </div>

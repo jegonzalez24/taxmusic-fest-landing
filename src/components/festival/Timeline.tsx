@@ -1,49 +1,70 @@
-import { Clock, Users, Music, Gamepad2, Star, Disc } from "lucide-react";
+import { Clock, Users, Music, Gamepad2, Star, Disc, Beer, Utensils, PartyPopper, RefreshCw } from "lucide-react";
 
 export function Timeline() {
   const events = [
     {
-      time: "8:00 AM",
-      title: "Bienvenida & Registro",
+      time: "11:00 AM",
+      title: "Registro disponibilidad todo el día",
       description: "Bienvenida y registro: Recepción y activación de asistencia con QR",
-      icon: Users,
+      icon: Users, // Registro de personas
       color: "bg-festival-cyan",
     },
     {
-      time: "8:30 A M",
-      title: "Welcome Show",
-      description: "Apertura oficial con presentación del evento",
-      icon: Star,
+      time: "11:30 AM- 3:00 PM",
+      title: "Juegos de feria",
+      description: "Apertura de los juegos de feria",
+      icon: Gamepad2, // Juegos
       color: "bg-festival-purple",
     },
     {
-      time: "9:00 AM",
-      title: "Apertura de Experiencias",
-      description: " ",
-      icon: Gamepad2,
+      time: "11:30 AM",
+      title: "Apertura de bebidas ",
+      description: "Abiertas hasta agotar existencias",
+      icon: Beer, // Bebidas
       color: "bg-festival-magenta",
     },
     {
-      time: "9:30 AM",
+      time: "12:30 AM- 2:00 PM",
       title: "Food Trucks",
-      description: "Apertura de todas las estaciones gastronómicas y zonas chill",
-      icon: Clock,
+      description: "Apertura de todas las estaciones gastronómicas (hasta agotar existencias)",
+      icon: Utensils, // Comida
       color: "bg-festival-purple",
     },
-      {
-        time: "10:30 AM",
-        title: "Show Fest Principal",
-        description: "Presentación en vivo del Grupo Andalucia en tarima principal",
-        icon: Star,
-        color: "bg-festival-cyan",
-      },
     {
-        time: "12:30 PM",
-        title: "Cierre con DJ Set",
-        description: "Gran final con DJ Podri y música electrónica para cerrar con energía",
-        icon: Clock,
-        color: "bg-festival-magenta",
-      },
+      time: "3:30 PM- 5:00 PM",
+      title: "Team Building",
+      description: " ",
+      icon: PartyPopper, // Trabajo en equipo/diversión
+      color: "bg-festival-cyan",
+    },
+    {
+      time: "5:00 PM",
+      title: "Re-Apertura de experiencias",
+      description: "Se vuelven a abrir las experiencias para seguir disfrutando",
+      icon: RefreshCw, // Reapertura/renovación
+      color: "bg-festival-magenta",
+    },
+    {
+      time: "5:00 PM - 6:00 PM",
+      title: "Grupo Andalucía",
+      description: "Primer gran show con el Grupo Andalucía",
+      icon: Music, // Música en vivo
+      color: "bg-festival-purple",
+    },
+    {
+      time: "6:00 PM - 7:00 PM",
+      title: "DJ Podri",
+      description: "Segundo gran show con DJ Podri",
+      icon: Disc, // DJ/música electrónica
+      color: "bg-festival-magenta",
+    },
+    {
+      time: "7:00 PM - 8:00 PM",
+      title: "Gran cierre con Grupo Andalucía",
+      description: "Gran show de cierre con el Grupo Andalucía",
+      icon: Star, // Evento especial/cierre
+      color: "bg-festival-cyan",
+    },
   ];
 
   return (
